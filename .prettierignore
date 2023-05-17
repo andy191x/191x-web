@@ -1,0 +1,17 @@
+# ignore all files
+*
+
+# include all folders
+!**/
+
+# include file types to format
+!*.js
+!*.jsx
+!*.ts
+!*.tsx
+!*.css
+
+# ignore specific files/folders
+.git
+.next
+node_modules
