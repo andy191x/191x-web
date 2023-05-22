@@ -89,6 +89,45 @@ function SkillBullet({ text }: SkillBulletParams) {
     );
 }
 
+interface VectorParams {
+    size?: "base" | "sm";
+    className?: string;
+}
+
+function VectorModernWeb({ size = "base", className = "" }: VectorParams) {
+    const sizes = {
+        sm: {
+            outer: "mb-4 p-0 min-w-[64px] w-[64px] min-h-[64px] h-[64px]",
+            icon: "left-[9px] top-[8px] w-[48px]",
+            platform: "absolute top-[30px] w-[64px] drop-shadow-sm",
+        },
+        base: {
+            outer: "m-0 p-0 min-w-[128px] w-[128px] min-h-[128px] h-[128px]",
+            icon: "left-[15px] w-[96px]",
+            platform: "absolute top-[45px] w-[128px] drop-shadow-md",
+        },
+    };
+
+    return (
+        <div className={"inline-block relative " + sizes[size].outer + " " + className}>
+            <Image
+                src={"/images/skills/programming.svg"}
+                width={512}
+                height={512}
+                alt={"Laptop icon"}
+                className={"z-[2] absolute h-auto " + sizes[size].icon}
+            />
+            <Image
+                src={"/images/skills/platform.svg"}
+                width={163}
+                height={85}
+                alt={""}
+                className={"z-[1] absolute h-auto " + sizes[size].platform}
+            />
+        </div>
+    );
+}
+
 function TechnicalSkillsBlock() {
     return (
         <SectionBlock section={Section.Two} title={"Technical Skills"}>
@@ -98,10 +137,27 @@ function TechnicalSkillsBlock() {
                 <p className={"mt-2 mb-6"}>Building using industry standard web technologies.</p>
             </div>
             <div className={"max-w-[800px] mx-auto text-left"}>
-                <div className={"bg-white p-4 rounded-lg"}>
-                    <div className="grid grid-cols-3 gap-4">
+                <div className={"bg-white rounded-lg overflow-hidden"}>
+                    {/* Small configuration */}
+                    <div className="block sm:hidden p-4 pt-1">
+                        <div className={"flex flex-row justify-center items-center overflow-hidden"}>
+                            <VectorModernWeb size={"sm"} />
+                        </div>
+                        <div className="grid grid-cols-1 gap-2 mx-6">
+                            <SkillBullet text={"JavaScript"} />
+                            <SkillBullet text={"TypeScript"} />
+                            <SkillBullet text={"NodeJS"} />
+                            <SkillBullet text={"React"} />
+                            <SkillBullet text={"HTML5"} />
+                            <SkillBullet text={"CSS"} />
+                            <SkillBullet text={"Tailwind"} />
+                            <SkillBullet text={"Styled"} />
+                        </div>
+                    </div>
+                    {/* Medium+ configuration */}
+                    <div className="hidden sm:grid sm:grid-cols-3 sm:gap-4 p-4">
                         <div className={"col-span-2"}>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                            <div className="grid grid-cols-2 gap-4">
                                 <SkillBullet text={"JavaScript"} />
                                 <SkillBullet text={"TypeScript"} />
                                 <SkillBullet text={"NodeJS"} />
@@ -112,7 +168,9 @@ function TechnicalSkillsBlock() {
                                 <SkillBullet text={"Styled"} />
                             </div>
                         </div>
-                        <div className={"flex flex-row justify-center items-center"}>graphic</div>
+                        <div className={"flex flex-row justify-center items-center overflow-hidden"}>
+                            <VectorModernWeb />
+                        </div>
                     </div>
                 </div>
             </div>
