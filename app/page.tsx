@@ -5,6 +5,9 @@ import headerImage from "@/public/images/header.jpg";
 import andyImage from "@/public/images/andy.jpg";
 import { SectionBlock } from "@/components/SectionBlock";
 import { Section } from "@/components/Section";
+import { ANDREW_TWITTER_URL } from "@/lib/Constants";
+import { LinkExternal } from "@/components/LinkExternal";
+import { Button } from "@/components/Button";
 
 //
 // Blocks
@@ -47,14 +50,28 @@ function HeaderBlock() {
 }
 
 function InfoBlock() {
+    const buttonClasses = "w-[200px] mx-1 my-1";
     return (
         <SectionBlock section={Section.One}>
-            <h1 className={"text-3xl uppercase"}>Andrew Davis, Software Developer</h1>
+            <h1 className={"text-3xl"}>Andrew Davis, Software Developer</h1>
             <p>
                 I am a highly driven software generalist with 20+ years of real world experience. My passion is building
                 and evolving enterprise applications by using state-of-the-art technology.
             </p>
-            <p>This site is a showcase of my professional work and skillsets. For everything else, I’m on Twitter.</p>
+            <p>
+                This site is a showcase of my professional work and skillsets. For everything else, I’m on{" "}
+                <LinkExternal text={"Twitter"} href={ANDREW_TWITTER_URL} />.
+            </p>
+            <div className={"max-w-[500px] mx-auto text-center"}>
+                <span className={"inline-block font-semibold mb-2"}>Jump to Section</span>
+                <div className={"bg-[#eee] p-4 rounded-lg"}>
+                    <Button text={"Technical Skills"} className={buttonClasses} />
+                    <Button text={"Work History"} className={buttonClasses} />
+                    <br />
+                    <Button text={"Resume/CV"} className={buttonClasses} />
+                    <Button text={"Contact"} className={buttonClasses} />
+                </div>
+            </div>
         </SectionBlock>
     );
 }

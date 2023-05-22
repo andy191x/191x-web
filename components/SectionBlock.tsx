@@ -1,5 +1,3 @@
-"use client";
-
 /* eslint-disable no-unused-vars */
 import { Section } from "@/components/Section";
 
@@ -16,9 +14,9 @@ export function SectionBlock({ section, title = "", id = undefined, children }: 
             {section == Section.One && (
                 <>
                     <div
-                        className={"px-4 pt-4 pb-8 font-sans text-[#2c2c2c] bg-white"}
+                        className={"px-6 pt-4 pb-8 font-sans text-[#2c2c2c] bg-white"}
                         style={{
-                            /* next.js does not yet support repeat with Image */
+                            /* Next.js does not yet support repeat with Image */
                             backgroundImage: "url(/images/texture1.png)",
                             backgroundRepeat: "repeat",
                             backgroundSize: "256px 256px",
