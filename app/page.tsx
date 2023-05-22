@@ -3,6 +3,8 @@
 import Image from "next/image";
 import headerImage from "@/public/images/header.jpg";
 import andyImage from "@/public/images/andy.jpg";
+import { SectionBlock } from "@/components/SectionBlock";
+import { Section } from "@/components/Section";
 
 //
 // Blocks
@@ -10,14 +12,14 @@ import andyImage from "@/public/images/andy.jpg";
 
 function HeaderBlock() {
     return (
-        <div className={"h-[300px] overflow-hidden mb-4 relative"}>
+        <div className={"h-[275px] overflow-hidden m-0 relative"}>
             <div className={"h-[200px] bg-gradient-to-b from-[#7db5f0] to-[#bbe0fa] relative"}>
                 <Image
                     src={headerImage}
                     alt={""}
                     className={"absolute left-[0px] top-[0px] w-[100%] h-[100%] z-[0]"}
                     style={{ objectFit: "cover" }}
-                    quality={85}
+                    quality={100}
                     onDragStart={(e) => {
                         e.preventDefault();
                     }}
@@ -26,8 +28,9 @@ function HeaderBlock() {
                     <Image
                         src={andyImage}
                         alt={"Andrew Davis"}
+                        title={"Andrew"}
                         className={
-                            "absolute left-[16px] top-[100px] w-[180px] h-[180px] z-[1] rounded-full ring-[6px] ring-white ring-opacity-100"
+                            "absolute left-[8px] top-[89px] w-[180px] h-[180px] z-[1] rounded-full ring-[6px] ring-blue-100 ring-opacity-100"
                         }
                         onDragStart={(e) => {
                             e.preventDefault();
@@ -45,14 +48,14 @@ function HeaderBlock() {
 
 function InfoBlock() {
     return (
-        <div className={"max-w-[1000px] mx-auto px-4 mb-12"}>
-            <h1>Andrew Davis, Software Developer</h1>
-            <p>Welcome to my homepage!</p>
+        <SectionBlock section={Section.One}>
+            <h1 className={"text-3xl uppercase"}>Andrew Davis, Software Developer</h1>
             <p>
                 I am a highly driven software generalist with 20+ years of real world experience. My passion is building
                 and evolving enterprise applications by using state-of-the-art technology.
             </p>
-        </div>
+            <p>This site is a showcase of my professional work and skillsets. For everything else, I’m on Twitter.</p>
+        </SectionBlock>
     );
 }
 
@@ -60,14 +63,7 @@ function TechnicalSkillsBlock() {
     return (
         <div className={"max-w-[1000px] mx-auto px-4 mb-12"}>
             <h2>Technical Skills</h2>
-            <p>My career has taken me to many different directions of computer science. I am skilled in:</p>
-            <ul>
-                <li>Web, Application, Systems, and Game Programming</li>
-                <li>Cloud, DevOps, and System Administration</li>
-                <li>Project Management</li>
-                <li>Digital Artwork</li>
-            </ul>
-            <p>But more specifically...</p>
+            <p>My career has taken me to many different domains within computer science. But, more specifically.</p>
             <h3>Programming languages and frameworks</h3>
             <p>
                 C/C++, C#, CSS, HTML5, Objective C, Java, JavaScript, PHP, Python, React, Solidity, TypeScript, Unity.
@@ -79,7 +75,7 @@ function TechnicalSkillsBlock() {
             <h3>Operating systems</h3>
             <p>BSD (FreeBSD, OpenBSD), Linux (Ubuntu, Debian), MacOS, iOS, Windows, Windows Server.</p>
             <h3>Graphic design</h3>
-            <p>After Effects, Cinema4D, Illustrator, Inkscape, Photoshop.</p>
+            <p>After Effects, Cinema4D, Figma, Illustrator, Inkscape, Photoshop.</p>
         </div>
     );
 }
