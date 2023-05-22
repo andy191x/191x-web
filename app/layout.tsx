@@ -1,7 +1,13 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 
-const inter = Inter({ subsets: ["latin"] });
+const nunito = localFont({
+    src: [
+        { path: "/fonts/Nunito-VariableFont_wght.ttf", style: "normal" },
+        { path: "/fonts/Nunito-Italic-VariableFont_wght.ttf", style: "italic" },
+    ],
+    variable: "--font-nunito",
+});
 
 export const metadata = {
     title: "Andrew Davis",
@@ -11,7 +17,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
-            <body className={inter.className}>{children}</body>
+            <body className={nunito.className}>{children}</body>
         </html>
     );
 }
