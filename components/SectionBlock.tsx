@@ -26,7 +26,21 @@ export function SectionBlock({ section, title = "", id = undefined, children }: 
                         <div className={"max-w-[1000px] mx-auto relative"}>
                             {title.length > 0 && (
                                 <>
-                                    <h2 className={"text-3xl uppercase"}>{title}</h2>
+                                    <h2>{title}</h2>
+                                </>
+                            )}
+                            {children}
+                        </div>
+                    </div>
+                </>
+            )}
+            {section == Section.Two && (
+                <>
+                    <div className={"px-6 pt-4 pb-8 font-sans text-[#2c2c2c] bg-blue-100"} id={id}>
+                        <div className={"max-w-[1000px] mx-auto relative"}>
+                            {title.length > 0 && (
+                                <>
+                                    <h2>{title}</h2>
                                 </>
                             )}
                             {children}

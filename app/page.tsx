@@ -76,24 +76,47 @@ function InfoBlock() {
     );
 }
 
+interface SkillBulletParams {
+    text: string;
+}
+
+function SkillBullet({ text }: SkillBulletParams) {
+    return (
+        <div className={"flex flex-row justify-left items-center"}>
+            <div className={"inline-block bg-blue-500 rounded-full mr-2 w-2 h-2 ring-blue-200 ring-4"} />
+            <span className={"font-semibold"}>{text}</span>
+        </div>
+    );
+}
+
 function TechnicalSkillsBlock() {
     return (
-        <div className={"max-w-[1000px] mx-auto px-4 mb-12"}>
-            <h2>Technical Skills</h2>
-            <p>My career has taken me to many different domains within computer science. But, more specifically.</p>
-            <h3>Programming languages and frameworks</h3>
-            <p>
-                C/C++, C#, CSS, HTML5, Objective C, Java, JavaScript, PHP, Python, React, Solidity, TypeScript, Unity.
-            </p>
-            <h3>Databases</h3>
-            <p>MongoDB, MySQL, PostgreSQL, Redis, SQLite.</p>
-            <h3>Cloud platforms</h3>
-            <p>AWS, Azure, CloudFlare, Digital Ocean, Vercel, Vultr.</p>
-            <h3>Operating systems</h3>
-            <p>BSD (FreeBSD, OpenBSD), Linux (Ubuntu, Debian), MacOS, iOS, Windows, Windows Server.</p>
-            <h3>Graphic design</h3>
-            <p>After Effects, Cinema4D, Figma, Illustrator, Inkscape, Photoshop.</p>
-        </div>
+        <SectionBlock section={Section.Two} title={"Technical Skills"}>
+            <p>My career has taken me to many different domains within computer science. More specifically...</p>
+            <div className={"text-left"}>
+                <h3>Modern Web</h3>
+                <p className={"mt-2 mb-6"}>Building using industry standard web technologies.</p>
+            </div>
+            <div className={"max-w-[800px] mx-auto text-left"}>
+                <div className={"bg-white p-4 rounded-lg"}>
+                    <div className="grid grid-cols-3 gap-4">
+                        <div className={"col-span-2"}>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                                <SkillBullet text={"JavaScript"} />
+                                <SkillBullet text={"TypeScript"} />
+                                <SkillBullet text={"NodeJS"} />
+                                <SkillBullet text={"React"} />
+                                <SkillBullet text={"HTML5"} />
+                                <SkillBullet text={"CSS"} />
+                                <SkillBullet text={"Tailwind"} />
+                                <SkillBullet text={"Styled"} />
+                            </div>
+                        </div>
+                        <div className={"flex flex-row justify-center items-center"}>graphic</div>
+                    </div>
+                </div>
+            </div>
+        </SectionBlock>
     );
 }
 
