@@ -1,8 +1,8 @@
-export interface ButtonParams {
+export type ButtonParams = {
     text: string;
     className?: string;
     onClick?: any;
-}
+};
 
 export function Button({ text, className = "", onClick = undefined }: ButtonParams) {
     return (

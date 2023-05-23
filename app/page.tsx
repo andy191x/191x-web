@@ -89,9 +89,9 @@ function InfoBlock() {
     );
 }
 
-interface SkillBulletParams {
+type SkillBulletParams = {
     text: string;
-}
+};
 
 function SkillBullet({ text }: SkillBulletParams) {
     return (
@@ -102,12 +102,12 @@ function SkillBullet({ text }: SkillBulletParams) {
     );
 }
 
-interface SkillDisplayParams {
+type SkillDisplayParams = {
     align: "left" | "right";
     skillNames: string[];
     smallImage: React.ReactNode;
     largeImage: React.ReactNode;
-}
+};
 
 function SkillDisplay({ align, skillNames, smallImage, largeImage }: SkillDisplayParams) {
     return (
@@ -191,7 +191,7 @@ function TechnicalSkillsBlock() {
                     largeImage={<SkillIconModernWeb size={"base"} />}
                 />
                 <div className={"text-right mt-20"}>
-                    <h3>Full stack web</h3>
+                    <h3>Full Stack Web</h3>
                     <p className={"mt-2 mb-6"}>Proficient with the traditional full-stack web.</p>
                 </div>
                 <SkillDisplay
@@ -201,7 +201,7 @@ function TechnicalSkillsBlock() {
                     largeImage={<SkillIconFullstack size={"base"} />}
                 />
                 <div className={"text-left mt-20"}>
-                    <h3>Enterprise application design</h3>
+                    <h3>Enterprise Application Design</h3>
                     <p className={"mt-2 mb-6"}>
                         Experienced with designing and troubleshooting enterprise applications.
                     </p>
@@ -222,7 +222,7 @@ function TechnicalSkillsBlock() {
                     largeImage={<SkillIconEnterprise size={"base"} />}
                 />
                 <div className={"text-right mt-20"}>
-                    <h3>Smart contracts</h3>
+                    <h3>Smart Contracts</h3>
                     <p className={"mt-2 mb-6"}>Smart contracts for Ethereum and Arbitrum ecosystems.</p>
                 </div>
                 <SkillDisplay
@@ -232,7 +232,7 @@ function TechnicalSkillsBlock() {
                     largeImage={<SkillIconSmartContracts size={"base"} />}
                 />
                 <div className={"text-left mt-20"}>
-                    <h3>System level programming</h3>
+                    <h3>Systems Level Programming</h3>
                     <p className={"mt-2 mb-6"}>Desktop applications, CLI, game development, and system daemons.</p>
                 </div>
                 <SkillDisplay
@@ -252,7 +252,7 @@ function TechnicalSkillsBlock() {
                     largeImage={<SkillIconDatabase size={"base"} />}
                 />
                 <div className={"text-left mt-20"}>
-                    <h3>Cloud platforms</h3>
+                    <h3>Cloud Platforms</h3>
                     <p className={"mt-2 mb-6"}>Deployment and automation with the cloud.</p>
                 </div>
                 <SkillDisplay
@@ -262,7 +262,7 @@ function TechnicalSkillsBlock() {
                     largeImage={<SkillIconCloud size={"base"} />}
                 />
                 <div className={"text-right mt-20"}>
-                    <h3>Operating systems</h3>
+                    <h3>Operating Systems</h3>
                     <p className={"mt-2 mb-6"}>Familiar with many different desktop and server operating systems.</p>
                 </div>
                 <SkillDisplay
@@ -283,7 +283,7 @@ function TechnicalSkillsBlock() {
                     largeImage={<SkillIconOS size={"base"} />}
                 />
                 <div className={"text-left mt-20"}>
-                    <h3>Graphic design</h3>
+                    <h3>Graphic Design</h3>
                     <p className={"mt-2 mb-6"}>Capable of graphic design and digital artwork.</p>
                 </div>
                 <SkillDisplay
@@ -297,24 +297,100 @@ function TechnicalSkillsBlock() {
     );
 }
 
-function WorkHistoryBlock() {
+type TimelineItemParams = {
+    align: "left" | "right";
+    era: string;
+    jobTitle: string;
+    jobDesc: string;
+    present?: boolean;
+};
+
+function TimelineItem({ align, era, jobTitle, jobDesc, present = false }: TimelineItemParams) {
     return (
-        <div className={"max-w-[1000px] mx-auto px-4 mb-12"}>
-            <h2>Work History</h2>
-            <ul>
-                <li>2021-Present: Self Employed</li>
-                <li>2018-2020: Vultr, Cloud Storage Engineer</li>
-                <li>2016-2018: Vultr, Platform Developer</li>
-                <li>2014-2016: Vultr, Frontend Engineer</li>
-                <li>2010-2014: GameServers, Backend Engineer</li>
-                <li>2006-2010: GameServers, Software Engineer</li>
-                <li>2004-2012: Delusions, Software Contractor</li>
-            </ul>
-            [Download Full Resume]
-            <h3>Visual Portfolio</h3>
-            [Add photos]
+        <div className={"grid grid-cols-7 gap-0 max-w-[600px] mx-auto"}>
+            {align == "left" && <div className={"col-span-3 text-right font-bold text-[#2179A8]"}>{era}</div>}
+            {align == "right" && (
+                <div className={"col-span-3 text-right"}>
+                    <span className={"font-bold"}>{jobTitle}</span>
+                    <br />
+                    <span className={"text-sm"}>{jobDesc}</span>
+                    <div className={"h-20"}></div>
+                </div>
+            )}
+            <div className={"col-span-1"}>
+                <div className={"w-[50px] h-[100%] mx-auto relative"}>
+                    <div className={"absolute left-[22px] top-[0px] w-[6px] h-[100%] z-[1] bg-blue-100"}></div>
+                    <div
+                        className={
+                            "absolute inline-block left-[21px] top-[8px] w-2 h-2 z-[2] rounded-full ring-4 ring-blue-200 " +
+                            (present ? "animate-pulse bg-pink-600 ring-pink-200" : "bg-blue-500 ring-blue-200")
+                        }
+                    />
+                </div>
+            </div>
+            {align == "left" && (
+                <div className={"col-span-3 text-left"}>
+                    <span className={"font-bold"}>{jobTitle}</span>
+                    <br />
+                    <span className={"text-sm"}>{jobDesc}</span>
+                    <div className={"h-20"}></div>
+                </div>
+            )}
+            {align == "right" && <div className={"col-span-3 text-left font-bold text-[#2179A8]"}>{era}</div>}
         </div>
     );
+}
+
+type TimelineCapParams = {
+    direction: "top" | "bottom";
+};
+
+function TimelineCap({ direction }: TimelineCapParams) {
+    return (
+        <div className={"grid grid-cols-7 gap-0 max-w-[600px] mx-auto"}>
+            <div className={"col-span-3"}></div>
+            <div className={"col-span-1"}>
+                <div className={"w-[50px] h-[100%] mx-auto relative"}>
+                    <div
+                        className={
+                            "absolute left-[22px] top-[0px] w-[6px] h-[100%] z-[1] bg-blue-100 " +
+                            (direction == "top" ? "rounded-t-full" : "rounded-b-full")
+                        }
+                    ></div>
+                </div>
+            </div>
+            <div className={"col-span-3"}>
+                <div className={"h-10"}></div>
+            </div>
+        </div>
+    );
+}
+
+function WorkHistoryBlock() {
+    return (
+        <SectionBlock section={Section.One} title={"Work History"}>
+            <TimelineCap direction={"top"} />
+            <TimelineItem
+                align={"left"}
+                era={"2012 – Present"}
+                jobTitle={"Self Employed"}
+                jobDesc={"Modern web and EVM smart contracts for clients"}
+                present={true}
+            />
+            <TimelineItem align={"right"} era={"2018 – 2020"} jobTitle={"Vultr"} jobDesc={"Cloud Storage Engineer"} />
+            <TimelineItem align={"left"} era={"2016 – 2018"} jobTitle={"Vultr"} jobDesc={"Platform Developer"} />
+            <TimelineItem align={"right"} era={"2014 – 2016"} jobTitle={"Vultr"} jobDesc={"Frontend Engineer"} />
+            <TimelineItem align={"left"} era={"2010 – 2014"} jobTitle={"GameServers"} jobDesc={"Backend Engineer"} />
+            <TimelineItem align={"right"} era={"2006 – 2010"} jobTitle={"GameServers"} jobDesc={"Software Engineer"} />
+            <TimelineItem align={"left"} era={"2006 – 2010"} jobTitle={"Delusions"} jobDesc={"Software Contractor"} />
+            <TimelineCap direction={"bottom"} />
+        </SectionBlock>
+    );
+}
+
+function ResumeBlock() {
+    // TODO: FINISH ME
+    return <SectionBlock section={Section.Three} title={"Looking For My Resume/CV?"}></SectionBlock>;
 }
 
 function InterestsBlock() {
@@ -374,6 +450,7 @@ export default function Page() {
             <InfoBlock />
             <TechnicalSkillsBlock />
             <WorkHistoryBlock />
+            <ResumeBlock />
             <InterestsBlock />
             <ContactBlock />
             <CopyrightBlock />

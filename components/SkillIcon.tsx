@@ -4,18 +4,18 @@ import Image from "next/image";
 // Internal components
 //
 
-interface SkillIconSize {
+type SkillIconSize = {
     outer: string;
     icon: string;
     platform: string;
-}
+};
 
-interface SkillIconIntParams {
+type SkillIconIntParams = {
     svgIcon: string;
     svgPlatform: string;
     size: SkillIconSize;
     className?: string;
-}
+};
 
 function SkillIcon({ svgIcon, svgPlatform, size, className = "" }: SkillIconIntParams) {
     return (
@@ -42,10 +42,10 @@ function SkillIcon({ svgIcon, svgPlatform, size, className = "" }: SkillIconIntP
 // Exports
 //
 
-export interface SkillIconParams {
+export type SkillIconParams = {
     size?: "base" | "sm";
     className?: string;
-}
+};
 
 export function SkillIconModernWeb({ size = "base", className = "" }: SkillIconParams) {
     const sizes = {
