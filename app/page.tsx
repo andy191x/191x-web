@@ -8,6 +8,17 @@ import { Section } from "@/components/Section";
 import { ANDREW_TWITTER_URL } from "@/lib/Constants";
 import { LinkExternal } from "@/components/LinkExternal";
 import { Button } from "@/components/Button";
+import {
+    SkillIconCloud,
+    SkillIconDatabase,
+    SkillIconEnterprise,
+    SkillIconFullstack,
+    SkillIconModernWeb,
+    SkillIconSmartContracts,
+    SkillIconSystem,
+    SkillIconOS,
+    SkillIconGraphics,
+} from "@/components/SkillIcon";
 
 //
 // Blocks
@@ -15,7 +26,7 @@ import { Button } from "@/components/Button";
 
 function HeaderBlock() {
     return (
-        <div className={"h-[275px] overflow-hidden m-0 relative"}>
+        <div className={"h-[275px] min-w-[380px] overflow-hidden m-0 relative"}>
             <div className={"h-[200px] bg-gradient-to-b from-[#7db5f0] to-[#bbe0fa] relative"}>
                 <Image
                     src={headerImage}
@@ -62,14 +73,16 @@ function InfoBlock() {
                 This site is a showcase of my professional work and skillsets. For everything else, I’m on{" "}
                 <LinkExternal text={"Twitter"} href={ANDREW_TWITTER_URL} />.
             </p>
-            <div className={"max-w-[500px] mx-auto text-center"}>
-                <span className={"inline-block font-semibold mb-2"}>Jump to Section</span>
-                <div className={"bg-[#eee] p-4 rounded-lg"}>
-                    <Button text={"Technical Skills"} className={buttonClasses} />
-                    <Button text={"Work History"} className={buttonClasses} />
-                    <br />
-                    <Button text={"Resume/CV"} className={buttonClasses} />
-                    <Button text={"Contact"} className={buttonClasses} />
+            <div className={"text-center mb-6"}>
+                <div className={"inline-block mx-auto"}>
+                    <span className={"inline-block font-semibold mb-2"}>Jump to Section</span>
+                    <div className={"bg-opacity-50 bg-gray-200 p-1 rounded-lg"}>
+                        <Button text={"Technical Skills"} className={buttonClasses} />
+                        <Button text={"Work History"} className={buttonClasses} />
+                        <br />
+                        <Button text={"Resume/CV"} className={buttonClasses} />
+                        <Button text={"Contact"} className={buttonClasses} />
+                    </div>
                 </div>
             </div>
         </SectionBlock>
@@ -89,90 +102,196 @@ function SkillBullet({ text }: SkillBulletParams) {
     );
 }
 
-interface VectorParams {
-    size?: "base" | "sm";
-    className?: string;
+interface SkillDisplayParams {
+    align: "left" | "right";
+    skillNames: string[];
+    smallImage: React.ReactNode;
+    largeImage: React.ReactNode;
 }
 
-function VectorModernWeb({ size = "base", className = "" }: VectorParams) {
-    const sizes = {
-        sm: {
-            outer: "mb-4 p-0 min-w-[64px] w-[64px] min-h-[64px] h-[64px]",
-            icon: "left-[9px] top-[8px] w-[48px]",
-            platform: "absolute top-[30px] w-[64px] drop-shadow-sm",
-        },
-        base: {
-            outer: "m-0 p-0 min-w-[128px] w-[128px] min-h-[128px] h-[128px]",
-            icon: "left-[15px] w-[96px]",
-            platform: "absolute top-[45px] w-[128px] drop-shadow-md",
-        },
-    };
-
+function SkillDisplay({ align, skillNames, smallImage, largeImage }: SkillDisplayParams) {
     return (
-        <div className={"inline-block relative " + sizes[size].outer + " " + className}>
-            <Image
-                src={"/images/skills/programming.svg"}
-                width={512}
-                height={512}
-                alt={"Laptop icon"}
-                className={"z-[2] absolute h-auto " + sizes[size].icon}
-            />
-            <Image
-                src={"/images/skills/platform.svg"}
-                width={163}
-                height={85}
-                alt={""}
-                className={"z-[1] absolute h-auto " + sizes[size].platform}
-            />
-        </div>
+        <>
+            {/* Small configuration */}
+            {align == "left" && (
+                <div className={"text-left bg-white bg-opacity-80 rounded-lg overflow-hidden"}>
+                    <div className="grid grid-cols-2 gap-8 py-4 px-6 sm:hidden">
+                        <div>
+                            <div className="grid grid-cols-1 gap-2">
+                                {skillNames.map((skillName, index) => {
+                                    return <SkillBullet key={index} text={skillName} />;
+                                })}
+                            </div>
+                        </div>
+                        <div className={"flex flex-row justify-center items-center overflow-hidden"}>{largeImage}</div>
+                    </div>
+                </div>
+            )}
+            {align == "right" && (
+                <div className={"text-left bg-white bg-opacity-80 rounded-lg overflow-hidden"}>
+                    <div className="grid grid-cols-2 gap-8 py-4 px-6 sm:hidden">
+                        <div className={"flex flex-row justify-center items-center overflow-hidden"}>{largeImage}</div>
+                        <div>
+                            <div className="grid grid-cols-1 gap-2">
+                                {skillNames.map((skillName, index) => {
+                                    return <SkillBullet key={index} text={skillName} />;
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Medium+ configuration */}
+            {align == "left" && (
+                <div className={"text-left bg-white bg-opacity-80 rounded-lg overflow-hidden"}>
+                    <div className="hidden sm:grid sm:grid-cols-3 sm:gap-4 py-4 px-6">
+                        <div className={"col-span-2 flex flex-row justify-left items-center"}>
+                            <div className="grow grid grid-cols-2 gap-4">
+                                {skillNames.map((skillName, index) => {
+                                    return <SkillBullet key={index} text={skillName} />;
+                                })}
+                            </div>
+                        </div>
+                        <div className={"flex flex-row justify-center items-center overflow-hidden"}>{largeImage}</div>
+                    </div>
+                </div>
+            )}
+            {align == "right" && (
+                <div className={"text-left bg-white bg-opacity-80 rounded-lg overflow-hidden"}>
+                    <div className="hidden sm:grid sm:grid-cols-3 sm:gap-4 py-4 px-6">
+                        <div className={"flex flex-row justify-center items-center overflow-hidden"}>{largeImage}</div>
+                        <div className={"col-span-2 flex flex-row justify-left items-center"}>
+                            <div className="grow grid grid-cols-2 gap-4">
+                                {skillNames.map((skillName, index) => {
+                                    return <SkillBullet key={index} text={skillName} />;
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </>
     );
 }
 
 function TechnicalSkillsBlock() {
     return (
         <SectionBlock section={Section.Two} title={"Technical Skills"}>
-            <p>My career has taken me to many different domains within computer science. More specifically...</p>
-            <div className={"text-left"}>
-                <h3>Modern Web</h3>
-                <p className={"mt-2 mb-6"}>Building using industry standard web technologies.</p>
-            </div>
-            <div className={"max-w-[800px] mx-auto text-left"}>
-                <div className={"bg-white rounded-lg overflow-hidden"}>
-                    {/* Small configuration */}
-                    <div className="block sm:hidden p-4 pt-1">
-                        <div className={"flex flex-row justify-center items-center overflow-hidden"}>
-                            <VectorModernWeb size={"sm"} />
-                        </div>
-                        <div className="grid grid-cols-1 gap-2 mx-6">
-                            <SkillBullet text={"JavaScript"} />
-                            <SkillBullet text={"TypeScript"} />
-                            <SkillBullet text={"NodeJS"} />
-                            <SkillBullet text={"React"} />
-                            <SkillBullet text={"HTML5"} />
-                            <SkillBullet text={"CSS"} />
-                            <SkillBullet text={"Tailwind"} />
-                            <SkillBullet text={"Styled"} />
-                        </div>
-                    </div>
-                    {/* Medium+ configuration */}
-                    <div className="hidden sm:grid sm:grid-cols-3 sm:gap-4 p-4">
-                        <div className={"col-span-2"}>
-                            <div className="grid grid-cols-2 gap-4">
-                                <SkillBullet text={"JavaScript"} />
-                                <SkillBullet text={"TypeScript"} />
-                                <SkillBullet text={"NodeJS"} />
-                                <SkillBullet text={"React"} />
-                                <SkillBullet text={"HTML5"} />
-                                <SkillBullet text={"CSS"} />
-                                <SkillBullet text={"Tailwind"} />
-                                <SkillBullet text={"Styled"} />
-                            </div>
-                        </div>
-                        <div className={"flex flex-row justify-center items-center overflow-hidden"}>
-                            <VectorModernWeb />
-                        </div>
-                    </div>
+            <p>My career has taken me to many different domains within computer science. More specifically -</p>
+            <div>
+                <div className={"text-left mt-10"}>
+                    <h3>Modern Web</h3>
+                    <p className={"mt-2 mb-6"}>Building using industry standard web technologies.</p>
                 </div>
+                <SkillDisplay
+                    align={"left"}
+                    skillNames={["JavaScript", "TypeScript", "NodeJS", "React", "HTML5", "CSS", "Tailwind", "Styled"]}
+                    smallImage={<SkillIconModernWeb size={"sm"} />}
+                    largeImage={<SkillIconModernWeb size={"base"} />}
+                />
+                <div className={"text-right mt-20"}>
+                    <h3>Full stack web</h3>
+                    <p className={"mt-2 mb-6"}>Proficient with the traditional full-stack web.</p>
+                </div>
+                <SkillDisplay
+                    align={"right"}
+                    skillNames={["Nginx", "Apache", "PHP", "MySQL", "WordPress", "Drupal", "Joomla"]}
+                    smallImage={<SkillIconFullstack size={"sm"} />}
+                    largeImage={<SkillIconFullstack size={"base"} />}
+                />
+                <div className={"text-left mt-20"}>
+                    <h3>Enterprise application design</h3>
+                    <p className={"mt-2 mb-6"}>
+                        Experienced with designing and troubleshooting enterprise applications.
+                    </p>
+                </div>
+                <SkillDisplay
+                    align={"left"}
+                    skillNames={[
+                        "Algorithm analysis",
+                        "Application security",
+                        "Best practices",
+                        "Hardware",
+                        "Networking",
+                        "Project management",
+                        "QA",
+                        "Scaling",
+                    ]}
+                    smallImage={<SkillIconEnterprise size={"sm"} />}
+                    largeImage={<SkillIconEnterprise size={"base"} />}
+                />
+                <div className={"text-right mt-20"}>
+                    <h3>Smart contracts</h3>
+                    <p className={"mt-2 mb-6"}>Smart contracts for Ethereum and Arbitrum ecosystems.</p>
+                </div>
+                <SkillDisplay
+                    align={"right"}
+                    skillNames={["Auditing", "Solidity", "Hardhat", "EVM", "Alchemy", "Infura"]}
+                    smallImage={<SkillIconSmartContracts size={"sm"} />}
+                    largeImage={<SkillIconSmartContracts size={"base"} />}
+                />
+                <div className={"text-left mt-20"}>
+                    <h3>System level programming</h3>
+                    <p className={"mt-2 mb-6"}>Desktop applications, CLI, game development, and system daemons.</p>
+                </div>
+                <SkillDisplay
+                    align={"left"}
+                    skillNames={["C/C++", "C#", "Java", "Python", "Shell", "Unity"]}
+                    smallImage={<SkillIconSystem size={"sm"} />}
+                    largeImage={<SkillIconSystem size={"base"} />}
+                />
+                <div className={"text-right mt-20"}>
+                    <h3>Databases</h3>
+                    <p className={"mt-2 mb-6"}>Application-level and limited DBA experience with databases.</p>
+                </div>
+                <SkillDisplay
+                    align={"right"}
+                    skillNames={["MongoDB", "MySQL", "PostgreSQL", "Redis", "SQLite"]}
+                    smallImage={<SkillIconDatabase size={"sm"} />}
+                    largeImage={<SkillIconDatabase size={"base"} />}
+                />
+                <div className={"text-left mt-20"}>
+                    <h3>Cloud platforms</h3>
+                    <p className={"mt-2 mb-6"}>Deployment and automation with the cloud.</p>
+                </div>
+                <SkillDisplay
+                    align={"left"}
+                    skillNames={["AWS", "Azure", "CloudFlare", "Digital Ocean", "Vercel", "Vultr"]}
+                    smallImage={<SkillIconCloud size={"sm"} />}
+                    largeImage={<SkillIconCloud size={"base"} />}
+                />
+                <div className={"text-right mt-20"}>
+                    <h3>Operating systems</h3>
+                    <p className={"mt-2 mb-6"}>Familiar with many different desktop and server operating systems.</p>
+                </div>
+                <SkillDisplay
+                    align={"right"}
+                    skillNames={[
+                        "Android",
+                        "BSD (FreeBSD)",
+                        "BSD (OpenBSD)",
+                        "Linux (Ubuntu)",
+                        "Linux (Debian)",
+                        "MacOS",
+                        "iOS",
+                        "Virtualization",
+                        "Windows",
+                        "Windows Server",
+                    ]}
+                    smallImage={<SkillIconOS size={"sm"} />}
+                    largeImage={<SkillIconOS size={"base"} />}
+                />
+                <div className={"text-left mt-20"}>
+                    <h3>Graphic design</h3>
+                    <p className={"mt-2 mb-6"}>Capable of graphic design and digital artwork.</p>
+                </div>
+                <SkillDisplay
+                    align={"left"}
+                    skillNames={["After Effects", "Cinema4D", "Figma", "Illustrator", "Inkscape", "Photoshop"]}
+                    smallImage={<SkillIconGraphics size={"sm"} />}
+                    largeImage={<SkillIconGraphics size={"base"} />}
+                />
             </div>
         </SectionBlock>
     );
