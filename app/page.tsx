@@ -1,8 +1,6 @@
 "use client"; // TODO: optimize this into client/server
 
 import Image from "next/image";
-import headerImage from "@/public/images/header.jpg";
-import andyImage from "@/public/images/andy.jpg";
 import { SectionBlock } from "@/components/SectionBlock";
 import { Section } from "@/components/Section";
 import { ANDREW_TWITTER_URL } from "@/lib/Constants";
@@ -13,12 +11,15 @@ import {
     SkillIconDatabase,
     SkillIconEnterprise,
     SkillIconFullstack,
+    SkillIconGraphics,
     SkillIconModernWeb,
+    SkillIconOS,
     SkillIconSmartContracts,
     SkillIconSystem,
-    SkillIconOS,
-    SkillIconGraphics,
 } from "@/components/SkillIcon";
+import { headerImage, andyImage, portfolioImages } from "@/components/StaticImage";
+import { Gallery } from "@/components/Gallery";
+import { GalleryThumbnail } from "@/components/GalleryThumbnail";
 
 //
 // Blocks
@@ -389,8 +390,26 @@ function WorkHistoryBlock() {
 }
 
 function ResumeBlock() {
-    // TODO: FINISH ME
-    return <SectionBlock section={Section.Three} title={"Looking For My Resume/CV?"}></SectionBlock>;
+    return (
+        <SectionBlock section={Section.Three} title={"Looking For My Resume/CV?"}>
+            <div className={"text-center"}>
+                <Button text={"Download Resume"} className={"mt-5"} section={Section.Three} />
+            </div>
+        </SectionBlock>
+    );
+}
+
+function PortfolioBlock() {
+    return (
+        <SectionBlock section={Section.One} title={"Visual Portfolio"}>
+            <p>Screen captures from my past projects.</p>
+            <Gallery>
+                {portfolioImages.map((image, i) => {
+                    return <GalleryThumbnail key={i} thumb={image.thumb} full={image.full} desc={image.desc} />;
+                })}
+            </Gallery>
+        </SectionBlock>
+    );
 }
 
 function InterestsBlock() {
@@ -451,6 +470,7 @@ export default function Page() {
             <TechnicalSkillsBlock />
             <WorkHistoryBlock />
             <ResumeBlock />
+            <PortfolioBlock />
             <InterestsBlock />
             <ContactBlock />
             <CopyrightBlock />
