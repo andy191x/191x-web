@@ -36,9 +36,11 @@ export function SectionBlock({ section, title = "", id = undefined, children }: 
             )}
             {section == Section.Two && (
                 <>
+                    <div className={"h-[25px] bg-gray-100"}></div>
+                    <div className={"h-[25px] bg-blue-100"}></div>
                     <div
                         className={
-                            "min-w-[380px] px-6 pt-4 pb-8 font-sans text-[#2c2c2c] bg-blue-100 bg-gradient-to-r from-blue-100 to-white"
+                            "min-w-[380px] px-6 pt-6 pb-16 font-sans text-[#2c2c2c] bg-blue-100 bg-gradient-to-r from-blue-100 to-white"
                         }
                         id={id}
                     >
@@ -51,6 +53,8 @@ export function SectionBlock({ section, title = "", id = undefined, children }: 
                             {children}
                         </div>
                     </div>
+                    <div className={"h-[25px] bg-blue-100"}></div>
+                    <div className={"h-[25px] bg-gray-100"}></div>
                 </>
             )}
         </>
