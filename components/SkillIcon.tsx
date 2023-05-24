@@ -112,8 +112,8 @@ export function SkillIconEnterprise({ size = "base", className = "" }: SkillIcon
 
     return (
         <SkillIcon
-            svgIcon={"/images/skills/enterprise.svg"}
-            svgPlatform={"/images/skills/platform-blue.svg"}
+            svgIcon={"/images/skills/enterprise-v2.svg"}
+            svgPlatform={"/images/skills/platform-grey.svg"}
             size={sizes[size]}
             className={className}
         />
@@ -160,8 +160,8 @@ export function SkillIconSystem({ size = "base", className = "" }: SkillIconPara
 
     return (
         <SkillIcon
-            svgIcon={"/images/skills/system.svg"}
-            svgPlatform={"/images/skills/platform-blue.svg"}
+            svgIcon={"/images/skills/system-v2.svg"}
+            svgPlatform={"/images/skills/platform-grey.svg"}
             size={sizes[size]}
             className={className}
         />
@@ -172,19 +172,19 @@ export function SkillIconDatabase({ size = "base", className = "" }: SkillIconPa
     const sizes = {
         sm: {
             outer: "mb-4 p-0 min-w-[64px] w-[64px] min-h-[64px] h-[64px]",
-            icon: "left-[8px] top-[8px] w-[48px]",
+            icon: "left-[12px] top-[10px] w-[42px]",
             platform: "absolute top-[30px] w-[64px] drop-shadow-sm",
         },
         base: {
             outer: "m-0 p-0 min-w-[128px] w-[128px] min-h-[128px] h-[128px]",
-            icon: "left-[18px] w-[96px]",
+            icon: "left-[23px] w-[84px] top-[10px]",
             platform: "absolute top-[45px] w-[128px] drop-shadow-md",
         },
     };
 
     return (
         <SkillIcon
-            svgIcon={"/images/skills/database.svg"}
+            svgIcon={"/images/skills/database-v2.svg"}
             svgPlatform={"/images/skills/platform-grey.svg"}
             size={sizes[size]}
             className={className}
@@ -257,7 +257,7 @@ export function SkillIconGraphics({ size = "base", className = "" }: SkillIconPa
     return (
         <SkillIcon
             svgIcon={"/images/skills/graphics.svg"}
-            svgPlatform={"/images/skills/platform-blue.svg"}
+            svgPlatform={"/images/skills/platform-grey.svg"}
             size={sizes[size]}
             className={className}
         />
