@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
 import { Section } from "@/components/Section";
-import { Property } from "csstype";
-import Transition = Property.Transition;
+import { MutableRefObject, useEffect, useRef } from "react";
+import { usePrevious } from "@/lib/hooks/usePrevious";
 
 //
 // Export types
@@ -23,7 +22,7 @@ export type SectionBlockParams = {
     transitionTop?: SectionBlockTransition;
     transitionBottom?: SectionBlockTransition;
     title?: string;
-    id?: string;
+    scroll?: number;
     children?: any;
 };
 
@@ -92,15 +91,26 @@ export function SectionBlock({
     transitionTop = SectionBlockTransition.None,
     transitionBottom = SectionBlockTransition.None,
     title = "",
-    id = undefined,
+    scroll = 0,
     children,
 }: SectionBlockParams) {
+    const ref = useRef(null) as MutableRefObject<HTMLInputElement | null>;
+    const prevScroll = usePrevious(scroll);
+
+    useEffect(() => {
+        const stateChanged = prevScroll != undefined && scroll > 0 && scroll != prevScroll;
+        if (stateChanged) {
+            ref.current?.scrollIntoView({ behavior: "smooth" });
+        }
+    });
+
     return (
         <>
             {section == Section.One && (
                 <>
                     <TransitionBlock transition={transitionTop} />
                     <div
+                        ref={ref}
                         className={"min-w-[380px] px-6 pt-4 pb-8 font-sans text-[#2c2c2c] bg-white"}
                         style={{
                             /* Next.js does not yet support repeat with Image */
@@ -108,7 +118,6 @@ export function SectionBlock({
                             backgroundRepeat: "repeat",
                             backgroundSize: "256px 256px",
                         }}
-                        id={id}
                     >
                         <div className={"max-w-[1000px] mx-auto relative"}>
                             {title.length > 0 && (
@@ -126,10 +135,10 @@ export function SectionBlock({
                 <>
                     <TransitionBlock transition={transitionTop} />
                     <div
+                        ref={ref}
                         className={
                             "min-w-[380px] px-6 pt-6 pb-16 font-sans text-[#2c2c2c] bg-blue-100 bg-gradient-to-r from-blue-100 to-white"
                         }
-                        id={id}
                     >
                         <div className={"max-w-[1000px] mx-auto relative"}>
                             {title.length > 0 && (
@@ -146,7 +155,7 @@ export function SectionBlock({
             {section == Section.Three && (
                 <>
                     <TransitionBlock transition={transitionTop} />
-                    <div className={"min-w-[380px] px-6 pt-6 pb-16 font-sans text-[#2c2c2c] bg-[#d9f2ee]"} id={id}>
+                    <div ref={ref} className={"min-w-[380px] px-6 pt-6 pb-16 font-sans text-[#2c2c2c] bg-[#d9f2ee]"}>
                         <div className={"max-w-[1000px] mx-auto relative"}>
                             {title.length > 0 && (
                                 <>
@@ -162,7 +171,7 @@ export function SectionBlock({
             {section == Section.Four && (
                 <>
                     <TransitionBlock transition={transitionTop} />
-                    <div className={"min-w-[380px] px-6 pt-6 pb-16 font-sans text-[#2c2c2c] bg-[#f9f9f9]"} id={id}>
+                    <div ref={ref} className={"min-w-[380px] px-6 pt-6 pb-16 font-sans text-[#2c2c2c] bg-[#f9f9f9]"}>
                         <div className={"max-w-[1000px] mx-auto relative"}>
                             {title.length > 0 && (
                                 <>

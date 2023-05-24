@@ -33,6 +33,7 @@ import {
 } from "@/components/StaticImage";
 import { Gallery } from "@/components/Gallery";
 import { GalleryThumbnail } from "@/components/GalleryThumbnail";
+import { useCounter } from "@/lib/hooks/useCounter";
 
 //
 // Components
@@ -223,6 +224,18 @@ function ContactLink({ text, href, svgIcon }: ContactLinkParams) {
     );
 }
 
+enum PageBlock {
+    TechnicalSkills,
+    WorkHistory,
+    Resume,
+    Recommendations,
+    Contact,
+}
+
+type InfoBlockParams = {
+    onJumpTo: (block: PageBlock) => void;
+};
+
 //
 // Blocks
 //
@@ -263,10 +276,10 @@ function HeaderBlock() {
     );
 }
 
-function InfoBlock() {
+function InfoBlock({ onJumpTo, ...props }: InfoBlockParams) {
     const buttonClasses = "w-[200px] mx-1 my-1";
     return (
-        <SectionBlock section={Section.Four} transitionBottom={SectionBlockTransition.FourToTwo}>
+        <SectionBlock section={Section.Four} transitionBottom={SectionBlockTransition.FourToTwo} {...props}>
             <h1 className={"text-3xl"}>Andrew Davis, Software Developer</h1>
             <MessageToUser>Welcome to my homepage!</MessageToUser>
             <p>
@@ -287,7 +300,7 @@ function InfoBlock() {
                             alt={"Icon"}
                             className={"w-[64px] h-auto scale-x-[-1]"}
                         />
-                        <span className={"mx-4"}>Unconditionally Jump To</span>
+                        <span className={"mx-4"}>Jump to...</span>
                         <Image
                             src={"/images/hare.svg"}
                             width={512}
@@ -297,11 +310,39 @@ function InfoBlock() {
                         />
                     </div>
                     <div className={"bg-opacity-50 bg-gray-200 p-1 rounded-lg"}>
-                        <Button text={"Technical Skills"} className={buttonClasses} />
-                        <Button text={"Work History"} className={buttonClasses} />
+                        <Button
+                            text={"Technical Skills"}
+                            className={buttonClasses}
+                            onClick={() => {
+                                onJumpTo(PageBlock.TechnicalSkills);
+                                return false;
+                            }}
+                        />
+                        <Button
+                            text={"Work History"}
+                            className={buttonClasses}
+                            onClick={() => {
+                                onJumpTo(PageBlock.WorkHistory);
+                                return false;
+                            }}
+                        />
                         <br />
-                        <Button text={"Resume/CV"} className={buttonClasses} />
-                        <Button text={"Contact"} className={buttonClasses} />
+                        <Button
+                            text={"Resume/CV"}
+                            className={buttonClasses}
+                            onClick={() => {
+                                onJumpTo(PageBlock.Resume);
+                                return false;
+                            }}
+                        />
+                        <Button
+                            text={"Contact"}
+                            className={buttonClasses}
+                            onClick={() => {
+                                onJumpTo(PageBlock.Contact);
+                                return false;
+                            }}
+                        />
                     </div>
                 </div>
             </div>
@@ -309,12 +350,13 @@ function InfoBlock() {
     );
 }
 
-function TechnicalSkillsBlock() {
+function TechnicalSkillsBlock({ ...props }) {
     return (
         <SectionBlock
             section={Section.Two}
             transitionBottom={SectionBlockTransition.TwoToOne}
             title={"Technical Skills"}
+            {...props}
         >
             <p>My career has taken me to many different domains within computer science. More specifically -</p>
             <div>
@@ -435,9 +477,14 @@ function TechnicalSkillsBlock() {
     );
 }
 
-function WorkHistoryBlock() {
+function WorkHistoryBlock({ ...props }) {
     return (
-        <SectionBlock section={Section.One} title={"Work History"} transitionBottom={SectionBlockTransition.OneToThree}>
+        <SectionBlock
+            section={Section.One}
+            title={"Work History"}
+            transitionBottom={SectionBlockTransition.OneToThree}
+            {...props}
+        >
             <TimelineCap direction={"top"} />
             <TimelineItem
                 align={"left"}
@@ -457,12 +504,13 @@ function WorkHistoryBlock() {
     );
 }
 
-function ResumeBlock() {
+function ResumeBlock({ ...props }) {
     return (
         <SectionBlock
             section={Section.Three}
             transitionBottom={SectionBlockTransition.ThreeToOne}
             title={"Looking For My Resume/CV?"}
+            {...props}
         >
             <div className={"text-center"}>
                 <Button text={"Download Resume"} className={"mt-5"} section={Section.Three} />
@@ -471,12 +519,13 @@ function ResumeBlock() {
     );
 }
 
-function PortfolioBlock() {
+function PortfolioBlock({ ...props }) {
     return (
         <SectionBlock
             section={Section.One}
             transitionBottom={SectionBlockTransition.OneToTwo}
             title={"Visual Portfolio"}
+            {...props}
         >
             <p>Screen captures from my past projects.</p>
             <Gallery>
@@ -488,12 +537,13 @@ function PortfolioBlock() {
     );
 }
 
-function RecommendationsBlock() {
+function RecommendationsBlock({ ...props }) {
     return (
         <SectionBlock
             section={Section.Two}
             transitionBottom={SectionBlockTransition.TwoToFour}
             title={"Recommendations"}
+            {...props}
         >
             <MessageToUser>
                 Still here? Awesome! I have some fun recommendations from around the internet that you might enjoy.
@@ -562,9 +612,9 @@ function RecommendationsBlock() {
     );
 }
 
-function ContactBlock() {
+function ContactBlock({ ...props }) {
     return (
-        <SectionBlock section={Section.Four} title={"Contact"}>
+        <SectionBlock section={Section.Four} title={"Contact"} {...props}>
             <div className="sm:grid sm:grid-cols-4 text-center max-w-[640px] mx-auto">
                 <ContactLink text={"Email"} href={ANDREW_EMAIL_URL} svgIcon={"/images/contact/email.svg"} />
                 <ContactLink text={"LinkedIn"} href={ANDREW_LINKEDIN_URL} svgIcon={"/images/contact/linkedin.svg"} />
@@ -575,10 +625,10 @@ function ContactBlock() {
     );
 }
 
-function CopyrightBlock() {
+function CopyrightBlock({ ...props }) {
     const year = new Date().getUTCFullYear();
     return (
-        <SectionBlock section={Section.Three} transitionTop={SectionBlockTransition.ToFooter}>
+        <SectionBlock section={Section.Three} transitionTop={SectionBlockTransition.ToFooter} {...props}>
             <div className={"text-right"}>
                 <strong>Copyright Andrew Davis ©{year}</strong>
                 <br />
@@ -594,16 +644,45 @@ function CopyrightBlock() {
 //
 
 export default function Page() {
+    const { count: scroll1, increment: incrementScroll1 } = useCounter(0);
+    const { count: scroll2, increment: incrementScroll2 } = useCounter(0);
+    const { count: scroll3, increment: incrementScroll3 } = useCounter(0);
+    const { count: scroll4, increment: incrementScroll4 } = useCounter(0);
+
     return (
         <main>
             <HeaderBlock />
-            <InfoBlock />
-            <TechnicalSkillsBlock />
-            <WorkHistoryBlock />
-            <ResumeBlock />
+            <InfoBlock
+                onJumpTo={(block: PageBlock) => {
+                    switch (block) {
+                        case PageBlock.TechnicalSkills: {
+                            incrementScroll1();
+                            break;
+                        }
+                        case PageBlock.WorkHistory: {
+                            incrementScroll2();
+                            break;
+                        }
+                        case PageBlock.Resume: {
+                            incrementScroll3();
+                            break;
+                        }
+                        case PageBlock.Contact: {
+                            incrementScroll4();
+                            break;
+                        }
+                        default: {
+                            break;
+                        }
+                    }
+                }}
+            />
+            <TechnicalSkillsBlock scroll={scroll1} />
+            <WorkHistoryBlock scroll={scroll2} />
+            <ResumeBlock scroll={scroll3} />
             <PortfolioBlock />
             <RecommendationsBlock />
-            <ContactBlock />
+            <ContactBlock scroll={scroll4} />
             <CopyrightBlock />
         </main>
     );
