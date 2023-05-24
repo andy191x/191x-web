@@ -15,7 +15,7 @@ export function GalleryThumbnail({ full, thumb, desc = "" }: GalleryThumbnailPar
             className={
                 "inline-block relative " +
                 size +
-                " rounded-lg mx-2 my-2 overflow-hidden hover:ring-1 hover:ring-blue-500 shadow cursor-pointer"
+                " rounded-lg mx-2 my-2 overflow-hidden hover:ring-1 hover:ring-blue-500 drop-shadow cursor-pointer"
             }
             aria-label={desc}
         >

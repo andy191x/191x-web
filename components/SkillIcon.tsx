@@ -250,7 +250,7 @@ export function SkillIconGraphics({ size = "base", className = "" }: SkillIconPa
         base: {
             outer: "m-0 p-0 min-w-[128px] w-[128px] min-h-[128px] h-[128px]",
             icon: "left-[22px] w-[84px]",
-            platform: "absolute top-[45px] w-[128px] drop-shadow-md",
+            platform: "absolute top-[45px] w-[128px] drop-shadow",
         },
     };
 

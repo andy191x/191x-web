@@ -51,7 +51,7 @@ type SkillBulletParams = {
 function SkillBullet({ text }: SkillBulletParams) {
     return (
         <div className={"flex flex-row justify-left items-center"}>
-            <div className={"inline-block bg-blue-500 rounded-full mr-2 w-2 h-2 ring-blue-200 ring-4"} />
+            <div className={"inline-block bg-blue-500 rounded-full mr-3 w-2 h-2 ring-blue-200 ring-4"} />
             <span className={"font-semibold"}>{text}</span>
         </div>
     );
@@ -136,14 +136,28 @@ type TimelineItemParams = {
     jobTitle: string;
     jobDesc: string;
     present?: boolean;
+    companyImage?: React.ReactNode;
 };
 
-function TimelineItem({ align, era, jobTitle, jobDesc, present = false }: TimelineItemParams) {
+function TimelineItem({
+    align,
+    era,
+    jobTitle,
+    jobDesc,
+    present = false,
+    companyImage = undefined,
+}: TimelineItemParams) {
     return (
         <div className={"grid grid-cols-7 gap-0 max-w-[600px] mx-auto"}>
             {align == "left" && <div className={"col-span-3 text-right font-bold text-[#2179A8]"}>{era}</div>}
             {align == "right" && (
                 <div className={"col-span-3 text-right"}>
+                    {companyImage && (
+                        <>
+                            {companyImage}
+                            <br />
+                        </>
+                    )}
                     <span className={"font-bold"}>{jobTitle}</span>
                     <br />
                     <span className={"text-sm"}>{jobDesc}</span>
@@ -165,6 +179,12 @@ function TimelineItem({ align, era, jobTitle, jobDesc, present = false }: Timeli
             </div>
             {align == "left" && (
                 <div className={"col-span-3 text-left"}>
+                    {companyImage && (
+                        <>
+                            {companyImage}
+                            <br />
+                        </>
+                    )}
                     <span className={"font-bold"}>{jobTitle}</span>
                     <br />
                     <span className={"text-sm"}>{jobDesc}</span>
@@ -216,7 +236,7 @@ function ContactLink({ text, href, svgIcon }: ContactLinkParams) {
                     width={512}
                     height={512}
                     alt={"Icon"}
-                    className={"inline-block w-[90%] max-w-[72px] h-auto m-4 drop-shadow-lg hover:opacity-50"}
+                    className={"inline-block w-[90%] max-w-[72px] h-auto m-4 drop-shadow hover:opacity-50"}
                 />
             </a>
             <br />
@@ -473,6 +493,26 @@ function TechnicalSkillsBlock({ ...props }) {
 }
 
 function WorkHistoryBlock({ ...props }) {
+    const IconVultr = (
+        <ImageWrap
+            src={"/images/work/vultr.svg"}
+            width={42}
+            height={36}
+            alt={"Icon"}
+            className={"inline-block w-[48px] h-auto mb-4 drop-shadow"}
+        />
+    );
+
+    const IconGS = (
+        <ImageWrap
+            src={"/images/work/gs.svg"}
+            width={512}
+            height={512}
+            alt={"Icon"}
+            className={"inline-block w-[48px] h-auto mb-4 drop-shadow"}
+        />
+    );
+
     return (
         <SectionBlock
             section={Section.One}
@@ -488,12 +528,42 @@ function WorkHistoryBlock({ ...props }) {
                 jobDesc={"Modern web and EVM smart contracts"}
                 present={true}
             />
-            <TimelineItem align={"right"} era={"2018 – 2020"} jobTitle={"Vultr"} jobDesc={"Cloud Storage Engineer"} />
-            <TimelineItem align={"left"} era={"2016 – 2018"} jobTitle={"Vultr"} jobDesc={"Platform Developer"} />
-            <TimelineItem align={"right"} era={"2014 – 2016"} jobTitle={"Vultr"} jobDesc={"Frontend Engineer"} />
-            <TimelineItem align={"left"} era={"2010 – 2014"} jobTitle={"GameServers"} jobDesc={"Backend Engineer"} />
-            <TimelineItem align={"right"} era={"2006 – 2010"} jobTitle={"GameServers"} jobDesc={"Software Engineer"} />
-            <TimelineItem align={"left"} era={"2006 – 2010"} jobTitle={"Delusions"} jobDesc={"Software Contractor"} />
+            <TimelineItem
+                align={"right"}
+                era={"2018 – 2020"}
+                jobTitle={"Vultr"}
+                jobDesc={"Cloud Storage Engineer"}
+                companyImage={IconVultr}
+            />
+            <TimelineItem
+                align={"left"}
+                era={"2016 – 2018"}
+                jobTitle={"Vultr"}
+                jobDesc={"Platform Developer"}
+                companyImage={IconVultr}
+            />
+            <TimelineItem
+                align={"right"}
+                era={"2014 – 2016"}
+                jobTitle={"Vultr"}
+                jobDesc={"Frontend Engineer"}
+                companyImage={IconVultr}
+            />
+            <TimelineItem
+                align={"left"}
+                era={"2010 – 2014"}
+                jobTitle={"GameServers"}
+                jobDesc={"Backend Engineer"}
+                companyImage={IconGS}
+            />
+            <TimelineItem
+                align={"right"}
+                era={"2006 – 2010"}
+                jobTitle={"GameServers"}
+                jobDesc={"Software Engineer"}
+                companyImage={IconGS}
+            />
+            <TimelineItem align={"left"} era={"2004 – 2012"} jobTitle={"Delusions"} jobDesc={"Software Contractor"} />
             <TimelineCap direction={"bottom"} />
         </SectionBlock>
     );
@@ -508,7 +578,7 @@ function ResumeBlock({ ...props }) {
             {...props}
         >
             <div className={"text-center"}>
-                <Button text={"Download Resume"} className={"mt-5"} section={Section.Three} />
+                <Button text={"Download Resume PDF"} className={"mt-5"} section={Section.Three} />
             </div>
         </SectionBlock>
     );
@@ -522,7 +592,7 @@ function PortfolioBlock({ ...props }) {
             title={"Visual Portfolio"}
             {...props}
         >
-            <p>Screen captures from my past projects.</p>
+            <p>Screen captures from my past frontend projects.</p>
             <Gallery>
                 {portfolioImages.map((image, i) => {
                     return <GalleryThumbnail key={i} thumb={image.thumb} full={image.full} desc={image.desc} />;
@@ -587,7 +657,7 @@ function RecommendationsBlock({ ...props }) {
                     <p>
                         One of those popular &quot;best seller / productivity&quot; books. I&apos;ve read a number of
                         these over the years, but David Allen&apos;s book stands out from the crowd. The methods
-                        described in his book are helpful towards saving time when solving everyday problems.
+                        described in his book are helpful toward saving time.
                     </p>
                 </div>
                 <div className={"text-center"}>
