@@ -1,7 +1,7 @@
 "use client"; // TODO: optimize this into client/server
 
 import Image from "next/image";
-import { SectionBlock } from "@/components/SectionBlock";
+import { SectionBlock, SectionBlockTransition } from "@/components/SectionBlock";
 import { Section } from "@/components/Section";
 import { ANDREW_TWITTER_URL } from "@/lib/Constants";
 import { LinkExternal } from "@/components/LinkExternal";
@@ -18,12 +18,12 @@ import {
     SkillIconSystem,
 } from "@/components/SkillIcon";
 import {
-    headerImage,
     andyImage,
+    headerImage,
     portfolioImages,
-    recommendsMelodysheep,
-    recommendsLibraries,
     recommendsGTD,
+    recommendsLibraries,
+    recommendsMelodysheep,
 } from "@/components/StaticImage";
 import { Gallery } from "@/components/Gallery";
 import { GalleryThumbnail } from "@/components/GalleryThumbnail";
@@ -234,7 +234,7 @@ function HeaderBlock() {
 function InfoBlock() {
     const buttonClasses = "w-[200px] mx-1 my-1";
     return (
-        <SectionBlock section={Section.One}>
+        <SectionBlock section={Section.One} transitionBottom={SectionBlockTransition.OneToTwo}>
             <h1 className={"text-3xl"}>Andrew Davis, Software Developer</h1>
             <MessageToUser>Welcome to my homepage!</MessageToUser>
             <p>
@@ -263,7 +263,11 @@ function InfoBlock() {
 
 function TechnicalSkillsBlock() {
     return (
-        <SectionBlock section={Section.Two} title={"Technical Skills"}>
+        <SectionBlock
+            section={Section.Two}
+            transitionBottom={SectionBlockTransition.TwoToOne}
+            title={"Technical Skills"}
+        >
             <p>My career has taken me to many different domains within computer science. More specifically -</p>
             <div>
                 <div className={"text-left mt-10"}>
@@ -385,7 +389,7 @@ function TechnicalSkillsBlock() {
 
 function WorkHistoryBlock() {
     return (
-        <SectionBlock section={Section.One} title={"Work History"}>
+        <SectionBlock section={Section.One} title={"Work History"} transitionBottom={SectionBlockTransition.OneToThree}>
             <TimelineCap direction={"top"} />
             <TimelineItem
                 align={"left"}
@@ -407,7 +411,11 @@ function WorkHistoryBlock() {
 
 function ResumeBlock() {
     return (
-        <SectionBlock section={Section.Three} title={"Looking For My Resume/CV?"}>
+        <SectionBlock
+            section={Section.Three}
+            transitionBottom={SectionBlockTransition.ThreeToOne}
+            title={"Looking For My Resume/CV?"}
+        >
             <div className={"text-center"}>
                 <Button text={"Download Resume"} className={"mt-5"} section={Section.Three} />
             </div>
@@ -417,7 +425,11 @@ function ResumeBlock() {
 
 function PortfolioBlock() {
     return (
-        <SectionBlock section={Section.One} title={"Visual Portfolio"}>
+        <SectionBlock
+            section={Section.One}
+            transitionBottom={SectionBlockTransition.OneToTwo}
+            title={"Visual Portfolio"}
+        >
             <p>Screen captures from my past projects.</p>
             <Gallery>
                 {portfolioImages.map((image, i) => {
@@ -446,14 +458,12 @@ function RecommendationsBlock() {
                         physics, and cosmology. The music and visuals in his videos are a masterpiece.
                     </p>
                 </div>
-                <div>
-                    <p className={"text-center"}>
-                        <GalleryThumbnail full={"https://www.youtube.com/@melodysheep"} thumb={recommendsMelodysheep} />
-                        <br />
-                        <span className={"text-xs"}>
-                            <a href={"https://www.youtube.com/@melodysheep"}>View on YouTube</a>
-                        </span>
-                    </p>
+                <div className={"text-center"}>
+                    <GalleryThumbnail full={"https://www.youtube.com/@melodysheep"} thumb={recommendsMelodysheep} />
+                    <br />
+                    <span className={"text-xs"}>
+                        <a href={"https://www.youtube.com/@melodysheep"}>View on YouTube</a>
+                    </span>
                 </div>
             </div>
 
@@ -462,17 +472,15 @@ function RecommendationsBlock() {
                 <div>
                     <p>Here&apos;s a collection of 30 awe-inspiring libraries from around the world.</p>
                 </div>
-                <div>
-                    <p className={"text-center"}>
-                        <GalleryThumbnail
-                            full={"https://twitter.com/AlexAndBooks_/status/1549052938168909826"}
-                            thumb={recommendsLibraries}
-                        />
-                        <br />
-                        <span className={"text-xs"}>
-                            <a href={"https://twitter.com/AlexAndBooks_/status/1549052938168909826"}>View on Twitter</a>
-                        </span>
-                    </p>
+                <div className={"text-center"}>
+                    <GalleryThumbnail
+                        full={"https://twitter.com/AlexAndBooks_/status/1549052938168909826"}
+                        thumb={recommendsLibraries}
+                    />
+                    <br />
+                    <span className={"text-xs"}>
+                        <a href={"https://twitter.com/AlexAndBooks_/status/1549052938168909826"}>View on Twitter</a>
+                    </span>
                 </div>
             </div>
 
@@ -485,23 +493,17 @@ function RecommendationsBlock() {
                         described in his book are helpful towards saving time when solving everyday problems.
                     </p>
                 </div>
-                <div>
-                    <p className={"text-center"}>
-                        <GalleryThumbnail
-                            full={"https://www.amazon.com/Getting-Things-Done-Stress-Free-Productivity/dp/0143126563/"}
-                            thumb={recommendsGTD}
-                        />
-                        <br />
-                        <span className={"text-xs"}>
-                            <a
-                                href={
-                                    "https://www.amazon.com/Getting-Things-Done-Stress-Free-Productivity/dp/0143126563/"
-                                }
-                            >
-                                View on Amazon
-                            </a>
-                        </span>
-                    </p>
+                <div className={"text-center"}>
+                    <GalleryThumbnail
+                        full={"https://www.amazon.com/Getting-Things-Done-Stress-Free-Productivity/dp/0143126563/"}
+                        thumb={recommendsGTD}
+                    />
+                    <br />
+                    <span className={"text-xs"}>
+                        <a href={"https://www.amazon.com/Getting-Things-Done-Stress-Free-Productivity/dp/0143126563/"}>
+                            View on Amazon
+                        </a>
+                    </span>
                 </div>
             </div>
         </SectionBlock>
