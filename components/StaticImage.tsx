@@ -1,3 +1,7 @@
+//
+// Import
+//
+
 import headerImage from "@/public/images/header.jpg";
 import andyImage from "@/public/images/andy.jpg";
 
@@ -32,4 +36,12 @@ const portfolioImages = [
     },
 ];
 
-export { headerImage, andyImage, portfolioImages };
+import recommendsMelodysheep from "@/public/images/recommends/melodysheep.png";
+import recommendsLibraries from "@/public/images/recommends/libraries.png";
+import recommendsGTD from "@/public/images/recommends/gtd.png";
+
+//
+// Export
+//
+
+export { headerImage, andyImage, portfolioImages, recommendsMelodysheep, recommendsLibraries, recommendsGTD };

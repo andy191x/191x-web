@@ -30,11 +30,11 @@ body {
     }
 
     a {
-        @apply text-blue-700 underline hover:text-blue-400;
+        @apply underline font-bold hover:no-underline;
     }
 
     p {
-        @apply text-base my-12;
+        @apply text-base my-6;
     }
 
     ul {

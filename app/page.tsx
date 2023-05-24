@@ -17,77 +17,23 @@ import {
     SkillIconSmartContracts,
     SkillIconSystem,
 } from "@/components/SkillIcon";
-import { headerImage, andyImage, portfolioImages } from "@/components/StaticImage";
+import {
+    headerImage,
+    andyImage,
+    portfolioImages,
+    recommendsMelodysheep,
+    recommendsLibraries,
+    recommendsGTD,
+} from "@/components/StaticImage";
 import { Gallery } from "@/components/Gallery";
 import { GalleryThumbnail } from "@/components/GalleryThumbnail";
 
 //
-// Blocks
+// Components
 //
 
-function HeaderBlock() {
-    return (
-        <div className={"h-[275px] min-w-[380px] overflow-hidden m-0 relative"}>
-            <div className={"h-[200px] bg-gradient-to-b from-[#7db5f0] to-[#bbe0fa] relative"}>
-                <Image
-                    src={headerImage}
-                    alt={""}
-                    className={"absolute left-[0px] top-[0px] w-[100%] h-[100%] z-[0]"}
-                    style={{ objectFit: "cover" }}
-                    quality={100}
-                    onDragStart={(e) => {
-                        e.preventDefault();
-                    }}
-                />
-                <div className={"max-w-[1000px] mx-auto relative z-[1]"}>
-                    <Image
-                        src={andyImage}
-                        alt={"Andrew Davis"}
-                        title={"Andrew"}
-                        className={
-                            "absolute left-[8px] top-[89px] w-[180px] h-[180px] z-[1] rounded-full ring-[6px] ring-blue-100 ring-opacity-100"
-                        }
-                        onDragStart={(e) => {
-                            e.preventDefault();
-                        }}
-                    />
-                    {/* image block content goes here! */}
-                </div>
-            </div>
-            <div className={"absolute left-[0px] top-[200px] w-[100%] h-[25px] z-[0] bg-blue-300"}></div>
-            <div className={"absolute left-[0px] top-[225px] w-[100%] h-[25px] z-[0] bg-blue-200"}></div>
-            <div className={"absolute left-[0px] top-[250px] w-[100%] h-[25px] z-[0] bg-blue-100"}></div>
-        </div>
-    );
-}
-
-function InfoBlock() {
-    const buttonClasses = "w-[200px] mx-1 my-1";
-    return (
-        <SectionBlock section={Section.One}>
-            <h1 className={"text-3xl"}>Andrew Davis, Software Developer</h1>
-            <p>
-                I am a highly driven software generalist with 20+ years of real world experience. My passion is building
-                and evolving enterprise applications by using state-of-the-art technology.
-            </p>
-            <p>
-                This site is a showcase of my professional work and skillsets. For everything else, I’m on{" "}
-                <LinkExternal text={"Twitter"} href={ANDREW_TWITTER_URL} />.
-            </p>
-            <div className={"text-center mb-6"}>
-                <div className={"inline-block mx-auto"}>
-                    <span className={"inline-block font-semibold mb-2"}>Jump to Section</span>
-                    <div className={"bg-opacity-50 bg-gray-200 p-1 rounded-lg"}>
-                        <Button text={"Technical Skills"} className={buttonClasses} />
-                        <Button text={"Work History"} className={buttonClasses} />
-                        <br />
-                        <Button text={"Resume/CV"} className={buttonClasses} />
-                        <Button text={"Contact"} className={buttonClasses} />
-                    </div>
-                </div>
-            </div>
-        </SectionBlock>
-    );
+function MessageToUser({ children }: { children: React.ReactNode }) {
+    return <p className={"font-bold italic mx-0 my-8"}>{children}</p>;
 }
 
 type SkillBulletParams = {
@@ -173,6 +119,145 @@ function SkillDisplay({ align, skillNames, smallImage, largeImage }: SkillDispla
                 </div>
             )}
         </>
+    );
+}
+
+type TimelineItemParams = {
+    align: "left" | "right";
+    era: string;
+    jobTitle: string;
+    jobDesc: string;
+    present?: boolean;
+};
+
+function TimelineItem({ align, era, jobTitle, jobDesc, present = false }: TimelineItemParams) {
+    return (
+        <div className={"grid grid-cols-7 gap-0 max-w-[600px] mx-auto"}>
+            {align == "left" && <div className={"col-span-3 text-right font-bold text-[#2179A8]"}>{era}</div>}
+            {align == "right" && (
+                <div className={"col-span-3 text-right"}>
+                    <span className={"font-bold"}>{jobTitle}</span>
+                    <br />
+                    <span className={"text-sm"}>{jobDesc}</span>
+                    <div className={"h-20"}></div>
+                </div>
+            )}
+            <div className={"col-span-1"}>
+                <div className={"w-[50px] h-[100%] mx-auto relative"}>
+                    <div className={"absolute left-[22px] top-[0px] w-[6px] h-[100%] z-[1] bg-blue-100"}></div>
+                    <div
+                        className={
+                            "absolute inline-block left-[21px] top-[8px] w-2 h-2 z-[2] rounded-full ring-4 ring-blue-200 " +
+                            (present ? "animate-pulse bg-pink-600 ring-pink-200" : "bg-blue-500 ring-blue-200")
+                        }
+                    />
+                </div>
+            </div>
+            {align == "left" && (
+                <div className={"col-span-3 text-left"}>
+                    <span className={"font-bold"}>{jobTitle}</span>
+                    <br />
+                    <span className={"text-sm"}>{jobDesc}</span>
+                    <div className={"h-20"}></div>
+                </div>
+            )}
+            {align == "right" && <div className={"col-span-3 text-left font-bold text-[#2179A8]"}>{era}</div>}
+        </div>
+    );
+}
+
+type TimelineCapParams = {
+    direction: "top" | "bottom";
+};
+
+function TimelineCap({ direction }: TimelineCapParams) {
+    return (
+        <div className={"grid grid-cols-7 gap-0 max-w-[600px] mx-auto"}>
+            <div className={"col-span-3"}></div>
+            <div className={"col-span-1"}>
+                <div className={"w-[50px] h-[100%] mx-auto relative"}>
+                    <div
+                        className={
+                            "absolute left-[22px] top-[0px] w-[6px] h-[100%] z-[1] bg-blue-100 " +
+                            (direction == "top" ? "rounded-t-full" : "rounded-b-full")
+                        }
+                    ></div>
+                </div>
+            </div>
+            <div className={"col-span-3"}>
+                <div className={"h-10"}></div>
+            </div>
+        </div>
+    );
+}
+
+//
+// Blocks
+//
+
+function HeaderBlock() {
+    return (
+        <div className={"h-[275px] min-w-[380px] overflow-hidden m-0 relative"}>
+            <div className={"h-[200px] bg-gradient-to-b from-[#7db5f0] to-[#bbe0fa] relative"}>
+                <Image
+                    src={headerImage}
+                    alt={""}
+                    className={"absolute left-[0px] top-[0px] w-[100%] h-[100%] z-[0]"}
+                    style={{ objectFit: "cover" }}
+                    quality={100}
+                    onDragStart={(e) => {
+                        e.preventDefault();
+                    }}
+                />
+                <div className={"max-w-[1000px] mx-auto relative z-[1]"}>
+                    <Image
+                        src={andyImage}
+                        alt={"Andrew Davis"}
+                        title={"Andrew"}
+                        className={
+                            "absolute left-[8px] top-[89px] w-[180px] h-[180px] z-[1] rounded-full ring-[6px] ring-blue-100 ring-opacity-100"
+                        }
+                        onDragStart={(e) => {
+                            e.preventDefault();
+                        }}
+                    />
+                    {/* image block content goes here! */}
+                </div>
+            </div>
+            <div className={"absolute left-[0px] top-[200px] w-[100%] h-[25px] z-[0] bg-blue-300"}></div>
+            <div className={"absolute left-[0px] top-[225px] w-[100%] h-[25px] z-[0] bg-blue-200"}></div>
+            <div className={"absolute left-[0px] top-[250px] w-[100%] h-[25px] z-[0] bg-blue-100"}></div>
+        </div>
+    );
+}
+
+function InfoBlock() {
+    const buttonClasses = "w-[200px] mx-1 my-1";
+    return (
+        <SectionBlock section={Section.One}>
+            <h1 className={"text-3xl"}>Andrew Davis, Software Developer</h1>
+            <MessageToUser>Welcome to my homepage!</MessageToUser>
+            <p>
+                I am a highly driven software generalist with 20+ years of real world experience. My passion is building
+                and evolving enterprise applications by using state-of-the-art technology.
+            </p>
+            <p className={"mb-10"}>
+                This site is a showcase of my professional work and skillsets. For everything else, I&apos;m on{" "}
+                <LinkExternal text={"Twitter"} href={ANDREW_TWITTER_URL} />.
+            </p>
+            <div className={"text-center"}>
+                <div className={"inline-block mx-auto"}>
+                    <span className={"inline-block font-semibold mb-2"}>Jump to Section</span>
+                    <div className={"bg-opacity-50 bg-gray-200 p-1 rounded-lg"}>
+                        <Button text={"Technical Skills"} className={buttonClasses} />
+                        <Button text={"Work History"} className={buttonClasses} />
+                        <br />
+                        <Button text={"Resume/CV"} className={buttonClasses} />
+                        <Button text={"Contact"} className={buttonClasses} />
+                    </div>
+                </div>
+            </div>
+        </SectionBlock>
     );
 }
 
@@ -298,75 +383,6 @@ function TechnicalSkillsBlock() {
     );
 }
 
-type TimelineItemParams = {
-    align: "left" | "right";
-    era: string;
-    jobTitle: string;
-    jobDesc: string;
-    present?: boolean;
-};
-
-function TimelineItem({ align, era, jobTitle, jobDesc, present = false }: TimelineItemParams) {
-    return (
-        <div className={"grid grid-cols-7 gap-0 max-w-[600px] mx-auto"}>
-            {align == "left" && <div className={"col-span-3 text-right font-bold text-[#2179A8]"}>{era}</div>}
-            {align == "right" && (
-                <div className={"col-span-3 text-right"}>
-                    <span className={"font-bold"}>{jobTitle}</span>
-                    <br />
-                    <span className={"text-sm"}>{jobDesc}</span>
-                    <div className={"h-20"}></div>
-                </div>
-            )}
-            <div className={"col-span-1"}>
-                <div className={"w-[50px] h-[100%] mx-auto relative"}>
-                    <div className={"absolute left-[22px] top-[0px] w-[6px] h-[100%] z-[1] bg-blue-100"}></div>
-                    <div
-                        className={
-                            "absolute inline-block left-[21px] top-[8px] w-2 h-2 z-[2] rounded-full ring-4 ring-blue-200 " +
-                            (present ? "animate-pulse bg-pink-600 ring-pink-200" : "bg-blue-500 ring-blue-200")
-                        }
-                    />
-                </div>
-            </div>
-            {align == "left" && (
-                <div className={"col-span-3 text-left"}>
-                    <span className={"font-bold"}>{jobTitle}</span>
-                    <br />
-                    <span className={"text-sm"}>{jobDesc}</span>
-                    <div className={"h-20"}></div>
-                </div>
-            )}
-            {align == "right" && <div className={"col-span-3 text-left font-bold text-[#2179A8]"}>{era}</div>}
-        </div>
-    );
-}
-
-type TimelineCapParams = {
-    direction: "top" | "bottom";
-};
-
-function TimelineCap({ direction }: TimelineCapParams) {
-    return (
-        <div className={"grid grid-cols-7 gap-0 max-w-[600px] mx-auto"}>
-            <div className={"col-span-3"}></div>
-            <div className={"col-span-1"}>
-                <div className={"w-[50px] h-[100%] mx-auto relative"}>
-                    <div
-                        className={
-                            "absolute left-[22px] top-[0px] w-[6px] h-[100%] z-[1] bg-blue-100 " +
-                            (direction == "top" ? "rounded-t-full" : "rounded-b-full")
-                        }
-                    ></div>
-                </div>
-            </div>
-            <div className={"col-span-3"}>
-                <div className={"h-10"}></div>
-            </div>
-        </div>
-    );
-}
-
 function WorkHistoryBlock() {
     return (
         <SectionBlock section={Section.One} title={"Work History"}>
@@ -412,19 +428,83 @@ function PortfolioBlock() {
     );
 }
 
-function InterestsBlock() {
+function RecommendationsBlock() {
     return (
-        <div className={"max-w-[1000px] mx-auto px-4 mb-12"}>
-            <h2>Personal Interests</h2>
-            <h3>Pet Projects</h3>
-            Personal projects that I am actively maintaining.
-            <br />
-            BoosterPax Launch | GH
-            <h3>Science Documentaries</h3>
-            Melodysheep links
-            <h3>Nature</h3>
-            Travel photos
-        </div>
+        <SectionBlock section={Section.Two} title={"Recommendations"}>
+            <MessageToUser>
+                Still here? Awesome! I have some fun recommendations from around the internet that you might enjoy.
+                <br />
+                <br />
+                These are tailored for all ages and backgrounds.
+            </MessageToUser>
+
+            <h3>Melodysheep</h3>
+            <div className="sm:grid sm:grid-cols-2">
+                <div>
+                    <p>
+                        An artist that produces documentaries based on our current understanding of life science,
+                        physics, and cosmology. The music and visuals in his videos are a masterpiece.
+                    </p>
+                </div>
+                <div>
+                    <p className={"text-center"}>
+                        <GalleryThumbnail full={"https://www.youtube.com/@melodysheep"} thumb={recommendsMelodysheep} />
+                        <br />
+                        <span className={"text-xs"}>
+                            <a href={"https://www.youtube.com/@melodysheep"}>View on YouTube</a>
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            <h3>Libraries of the World</h3>
+            <div className="sm:grid sm:grid-cols-2">
+                <div>
+                    <p>Here&apos;s a collection of 30 awe-inspiring libraries from around the world.</p>
+                </div>
+                <div>
+                    <p className={"text-center"}>
+                        <GalleryThumbnail
+                            full={"https://twitter.com/AlexAndBooks_/status/1549052938168909826"}
+                            thumb={recommendsLibraries}
+                        />
+                        <br />
+                        <span className={"text-xs"}>
+                            <a href={"https://twitter.com/AlexAndBooks_/status/1549052938168909826"}>View on Twitter</a>
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            <h3>Getting Things Done</h3>
+            <div className="sm:grid sm:grid-cols-2">
+                <div>
+                    <p>
+                        One of those popular &quot;best seller / productivity&quot; books. I&apos;ve read a number of
+                        these over the years, but David Allen&apos;s book stands out from the crowd. The methods
+                        described in his book are helpful towards saving time when solving everyday problems.
+                    </p>
+                </div>
+                <div>
+                    <p className={"text-center"}>
+                        <GalleryThumbnail
+                            full={"https://www.amazon.com/Getting-Things-Done-Stress-Free-Productivity/dp/0143126563/"}
+                            thumb={recommendsGTD}
+                        />
+                        <br />
+                        <span className={"text-xs"}>
+                            <a
+                                href={
+                                    "https://www.amazon.com/Getting-Things-Done-Stress-Free-Productivity/dp/0143126563/"
+                                }
+                            >
+                                View on Amazon
+                            </a>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </SectionBlock>
     );
 }
 
@@ -471,7 +551,7 @@ export default function Page() {
             <WorkHistoryBlock />
             <ResumeBlock />
             <PortfolioBlock />
-            <InterestsBlock />
+            <RecommendationsBlock />
             <ContactBlock />
             <CopyrightBlock />
         </main>
