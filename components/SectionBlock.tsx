@@ -8,11 +8,14 @@ import Transition = Property.Transition;
 //
 
 export enum SectionBlockTransition {
-    None = 0,
-    OneToTwo = 1,
-    TwoToOne = 2,
-    OneToThree = 3,
-    ThreeToOne = 4,
+    None,
+    OneToTwo,
+    TwoToOne,
+    TwoToFour,
+    OneToThree,
+    ThreeToOne,
+    FourToTwo,
+    ToFooter,
 }
 
 export type SectionBlockParams = {
@@ -33,7 +36,7 @@ type TransitionBlockParams = {
 };
 
 function TransitionBlock({ transition }: TransitionBlockParams) {
-    if (transition == SectionBlockTransition.OneToTwo) {
+    if (transition == SectionBlockTransition.OneToTwo || transition == SectionBlockTransition.FourToTwo) {
         return (
             <>
                 <div className={"h-[25px] bg-gray-50"}></div>
@@ -45,6 +48,13 @@ function TransitionBlock({ transition }: TransitionBlockParams) {
             <>
                 <div className={"h-[45px] bg-blue-50"}></div>
                 <div className={"h-[25px] bg-gray-50"}></div>
+            </>
+        );
+    } else if (transition == SectionBlockTransition.TwoToFour) {
+        return (
+            <>
+                <div className={"h-[15px] bg-blue-50"}></div>
+                <div className={"h-[20px] bg-gray-100"}></div>
             </>
         );
     } else if (transition == SectionBlockTransition.OneToThree) {
@@ -59,6 +69,13 @@ function TransitionBlock({ transition }: TransitionBlockParams) {
             <>
                 <div className={"h-[40px] bg-[#e6f5f3]"}></div>
                 <div className={"h-[20px] bg-gray-50"}></div>
+            </>
+        );
+    } else if (transition == SectionBlockTransition.ToFooter) {
+        return (
+            <>
+                <div className={"h-[32px] bg-gray-100"}></div>
+                <div className={"h-[48px] bg-[#e6f5f3]"}></div>
             </>
         );
     }
@@ -130,6 +147,22 @@ export function SectionBlock({
                 <>
                     <TransitionBlock transition={transitionTop} />
                     <div className={"min-w-[380px] px-6 pt-6 pb-16 font-sans text-[#2c2c2c] bg-[#d9f2ee]"} id={id}>
+                        <div className={"max-w-[1000px] mx-auto relative"}>
+                            {title.length > 0 && (
+                                <>
+                                    <h2 className={"text-center"}>{title}</h2>
+                                </>
+                            )}
+                            {children}
+                        </div>
+                    </div>
+                    <TransitionBlock transition={transitionBottom} />
+                </>
+            )}
+            {section == Section.Four && (
+                <>
+                    <TransitionBlock transition={transitionTop} />
+                    <div className={"min-w-[380px] px-6 pt-6 pb-16 font-sans text-[#2c2c2c] bg-[#f9f9f9]"} id={id}>
                         <div className={"max-w-[1000px] mx-auto relative"}>
                             {title.length > 0 && (
                                 <>
