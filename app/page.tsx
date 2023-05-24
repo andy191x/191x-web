@@ -34,6 +34,7 @@ import {
 import { Gallery } from "@/components/Gallery";
 import { GalleryThumbnail } from "@/components/GalleryThumbnail";
 import { useCounter } from "@/lib/hooks/useCounter";
+import { ImageWrap } from "@/components/ImageWrap";
 
 //
 // Components
@@ -210,7 +211,7 @@ function ContactLink({ text, href, svgIcon }: ContactLinkParams) {
     return (
         <div className={"m-2 sm:m-0"}>
             <a href={href}>
-                <Image
+                <ImageWrap
                     src={svgIcon}
                     width={512}
                     height={512}
@@ -244,27 +245,21 @@ function HeaderBlock() {
     return (
         <div className={"h-[250px] min-w-[380px] overflow-hidden m-0 relative"}>
             <div className={"h-[225px] bg-gradient-to-b from-[#7db5f0] to-[#bbe0fa] relative"}>
-                <Image
+                <ImageWrap
                     src={headerImage}
                     alt={""}
                     className={"absolute left-[0px] top-[0px] w-[100%] h-[100%] z-[0]"}
                     style={{ objectFit: "cover" }}
                     quality={100}
-                    onDragStart={(e) => {
-                        e.preventDefault();
-                    }}
                 />
                 <div className={"max-w-[1000px] mx-auto relative z-[1]"}>
-                    <Image
+                    <ImageWrap
                         src={andyImage}
                         alt={"Andrew Davis"}
                         title={"Andrew"}
                         className={
                             "absolute left-[12px] top-[64px] w-[180px] h-[180px] z-[1] rounded-full ring-[6px] ring-blue-100 ring-opacity-100"
                         }
-                        onDragStart={(e) => {
-                            e.preventDefault();
-                        }}
                     />
                     {/* image block content goes here! */}
                 </div>
@@ -293,7 +288,7 @@ function InfoBlock({ onJumpTo, ...props }: InfoBlockParams) {
             <div className={"text-center"}>
                 <div className={"inline-block mx-auto"}>
                     <div className={"flex flex-row justify-center items-center font-semibold mb-2"}>
-                        <Image
+                        <ImageWrap
                             src={"/images/hare.svg"}
                             width={512}
                             height={512}
@@ -301,7 +296,7 @@ function InfoBlock({ onJumpTo, ...props }: InfoBlockParams) {
                             className={"w-[64px] h-auto scale-x-[-1]"}
                         />
                         <span className={"mx-4"}>Jump to...</span>
-                        <Image
+                        <ImageWrap
                             src={"/images/hare.svg"}
                             width={512}
                             height={512}
@@ -553,7 +548,7 @@ function RecommendationsBlock({ ...props }) {
             </MessageToUser>
 
             <h3>Melodysheep</h3>
-            <div className="sm:grid sm:grid-cols-2">
+            <div className="sm:grid sm:grid-cols-2 mb-8">
                 <div>
                     <p>
                         An artist that produces documentaries based on our current understanding of life science,
@@ -570,7 +565,7 @@ function RecommendationsBlock({ ...props }) {
             </div>
 
             <h3>Libraries of the World</h3>
-            <div className="sm:grid sm:grid-cols-2">
+            <div className="sm:grid sm:grid-cols-2 mb-8">
                 <div>
                     <p>Here&apos;s a collection of 30 awe-inspiring libraries from around the world.</p>
                 </div>
@@ -587,7 +582,7 @@ function RecommendationsBlock({ ...props }) {
             </div>
 
             <h3>Getting Things Done</h3>
-            <div className="sm:grid sm:grid-cols-2">
+            <div className="sm:grid sm:grid-cols-2 mb-8">
                 <div>
                     <p>
                         One of those popular &quot;best seller / productivity&quot; books. I&apos;ve read a number of
@@ -629,7 +624,7 @@ function CopyrightBlock({ ...props }) {
     const year = new Date().getUTCFullYear();
     return (
         <SectionBlock section={Section.Three} transitionTop={SectionBlockTransition.ToFooter} {...props}>
-            <div className={"text-right"}>
+            <div className={"mt-6 mb-10 text-right"}>
                 <strong>Copyright Andrew Davis ©{year}</strong>
                 <br />
                 <br />

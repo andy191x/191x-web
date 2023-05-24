@@ -111,7 +111,7 @@ export function SectionBlock({
                     <TransitionBlock transition={transitionTop} />
                     <div
                         ref={ref}
-                        className={"min-w-[380px] px-6 pt-4 pb-8 font-sans text-[#2c2c2c] bg-white"}
+                        className={"min-w-[380px] px-6 py-6 font-sans text-[#2c2c2c] bg-white"}
                         style={{
                             /* Next.js does not yet support repeat with Image */
                             backgroundImage: "url(/images/texture1.png)",
@@ -137,7 +137,7 @@ export function SectionBlock({
                     <div
                         ref={ref}
                         className={
-                            "min-w-[380px] px-6 pt-6 pb-16 font-sans text-[#2c2c2c] bg-blue-100 bg-gradient-to-r from-blue-100 to-white"
+                            "min-w-[380px] px-6 py-6 font-sans text-[#2c2c2c] bg-blue-100 bg-gradient-to-r from-blue-100 to-white"
                         }
                     >
                         <div className={"max-w-[1000px] mx-auto relative"}>
@@ -155,7 +155,7 @@ export function SectionBlock({
             {section == Section.Three && (
                 <>
                     <TransitionBlock transition={transitionTop} />
-                    <div ref={ref} className={"min-w-[380px] px-6 pt-6 pb-16 font-sans text-[#2c2c2c] bg-[#d9f2ee]"}>
+                    <div ref={ref} className={"min-w-[380px] px-12 py-12 font-sans text-[#2c2c2c] bg-[#d9f2ee]"}>
                         <div className={"max-w-[1000px] mx-auto relative"}>
                             {title.length > 0 && (
                                 <>
@@ -171,7 +171,7 @@ export function SectionBlock({
             {section == Section.Four && (
                 <>
                     <TransitionBlock transition={transitionTop} />
-                    <div ref={ref} className={"min-w-[380px] px-6 pt-6 pb-16 font-sans text-[#2c2c2c] bg-[#f9f9f9]"}>
+                    <div ref={ref} className={"min-w-[380px] px-6 py-6 font-sans text-[#2c2c2c] bg-[#f9f9f9]"}>
                         <div className={"max-w-[1000px] mx-auto relative"}>
                             {title.length > 0 && (
                                 <>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ImageWrap } from "@/components/ImageWrap";
 
 //
 // Internal components
@@ -20,14 +21,14 @@ type SkillIconIntParams = {
 function SkillIcon({ svgIcon, svgPlatform, size, className = "" }: SkillIconIntParams) {
     return (
         <div className={"inline-block relative " + size.outer + " " + className}>
-            <Image
+            <ImageWrap
                 src={svgIcon}
                 width={512}
                 height={512}
                 alt={"Icon"}
                 className={"z-[2] absolute h-auto " + size.icon}
             />
-            <Image
+            <ImageWrap
                 src={svgPlatform}
                 width={163}
                 height={85}

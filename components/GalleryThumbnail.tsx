@@ -1,4 +1,5 @@
 import Image, { StaticImageData } from "next/image";
+import { ImageWrap } from "@/components/ImageWrap";
 
 export type GalleryThumbnailParams = {
     full: string;
@@ -19,14 +20,7 @@ export function GalleryThumbnail({ full, thumb, desc = "" }: GalleryThumbnailPar
             aria-label={desc}
         >
             <div className={"absolute left-0 top-0 z-[1] " + size + " bg-blue-500"} />
-            <Image
-                src={thumb}
-                alt={desc}
-                className={"absolute left-0 top-0 z-[2] " + size + " hover:opacity-50"}
-                onDragStart={(e) => {
-                    e.preventDefault();
-                }}
-            />
+            <ImageWrap src={thumb} alt={desc} className={"absolute left-0 top-0 z-[2] " + size + " hover:opacity-50"} />
         </a>
     );
 }
