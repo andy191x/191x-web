@@ -1,4 +1,4 @@
-import Image, { StaticImageData } from "next/image";
+import { StaticImageData } from "next/image";
 import { ImageWrap } from "@/components/ImageWrap";
 
 export type GalleryThumbnailParams = {

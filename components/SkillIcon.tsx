@@ -43,21 +43,16 @@ function SkillIcon({ svgIcon, svgPlatform, size, className = "" }: SkillIconIntP
 //
 
 export type SkillIconParams = {
-    size?: "base" | "sm";
+    size?: "base";
     className?: string;
 };
 
 export function SkillIconModernWeb({ size = "base", className = "" }: SkillIconParams) {
     const sizes = {
-        sm: {
-            outer: "mb-4 p-0 min-w-[64px] w-[64px] min-h-[64px] h-[64px]",
-            icon: "left-[9px] top-[8px] w-[48px]",
-            platform: "absolute top-[30px] w-[64px] drop-shadow-sm",
-        },
         base: {
             outer: "m-0 p-0 min-w-[128px] w-[128px] min-h-[128px] h-[128px]",
-            icon: "left-[15px] w-[96px]",
-            platform: "absolute top-[45px] w-[128px] drop-shadow-md",
+            icon: "left-[15px] w-[96px] drop-shadow",
+            platform: "absolute top-[45px] w-[128px] drop-shadow",
         },
     };
 
@@ -73,15 +68,10 @@ export function SkillIconModernWeb({ size = "base", className = "" }: SkillIconP
 
 export function SkillIconFullstack({ size = "base", className = "" }: SkillIconParams) {
     const sizes = {
-        sm: {
-            outer: "mb-4 p-0 min-w-[64px] w-[64px] min-h-[64px] h-[64px]",
-            icon: "left-[12px] top-[10px] w-[42px]",
-            platform: "absolute top-[30px] w-[64px] drop-shadow-sm",
-        },
         base: {
             outer: "m-0 p-0 min-w-[128px] w-[128px] min-h-[128px] h-[128px]",
-            icon: "left-[22px] w-[84px]",
-            platform: "absolute top-[45px] w-[128px] drop-shadow-md",
+            icon: "left-[22px] w-[84px] drop-shadow",
+            platform: "absolute top-[45px] w-[128px] drop-shadow",
         },
     };
 
@@ -97,15 +87,10 @@ export function SkillIconFullstack({ size = "base", className = "" }: SkillIconP
 
 export function SkillIconEnterprise({ size = "base", className = "" }: SkillIconParams) {
     const sizes = {
-        sm: {
-            outer: "mb-4 p-0 min-w-[64px] w-[64px] min-h-[64px] h-[64px]",
-            icon: "left-[12px] top-[10px] w-[42px]",
-            platform: "absolute top-[30px] w-[64px] drop-shadow-sm",
-        },
         base: {
             outer: "m-0 p-0 min-w-[128px] w-[128px] min-h-[128px] h-[128px]",
-            icon: "left-[22px] w-[84px]",
-            platform: "absolute top-[45px] w-[128px] drop-shadow-md",
+            icon: "left-[22px] w-[84px] drop-shadow",
+            platform: "absolute top-[45px] w-[128px] drop-shadow",
         },
     };
 
@@ -121,15 +106,10 @@ export function SkillIconEnterprise({ size = "base", className = "" }: SkillIcon
 
 export function SkillIconSmartContracts({ size = "base", className = "" }: SkillIconParams) {
     const sizes = {
-        sm: {
-            outer: "mb-4 p-0 min-w-[64px] w-[64px] min-h-[64px] h-[64px]",
-            icon: "left-[13px] top-[8px] w-[48px]",
-            platform: "absolute top-[30px] w-[64px] drop-shadow-sm",
-        },
         base: {
             outer: "m-0 p-0 min-w-[128px] w-[128px] min-h-[128px] h-[128px]",
-            icon: "left-[23px] w-[96px]",
-            platform: "absolute top-[45px] w-[128px] drop-shadow-md",
+            icon: "left-[23px] w-[96px] drop-shadow",
+            platform: "absolute top-[45px] w-[128px] drop-shadow",
         },
     };
 
@@ -145,15 +125,10 @@ export function SkillIconSmartContracts({ size = "base", className = "" }: Skill
 
 export function SkillIconSystem({ size = "base", className = "" }: SkillIconParams) {
     const sizes = {
-        sm: {
-            outer: "mb-4 p-0 min-w-[64px] w-[64px] min-h-[64px] h-[64px]",
-            icon: "left-[11px] top-[10px] w-[42px]",
-            platform: "absolute top-[30px] w-[64px] drop-shadow-sm",
-        },
         base: {
             outer: "m-0 p-0 min-w-[128px] w-[128px] min-h-[128px] h-[128px]",
-            icon: "left-[22px] top-[4px] w-[84px]",
-            platform: "absolute top-[45px] w-[128px] drop-shadow-md",
+            icon: "left-[22px] top-[4px] w-[84px] drop-shadow",
+            platform: "absolute top-[45px] w-[128px] drop-shadow",
         },
     };
 
@@ -169,15 +144,10 @@ export function SkillIconSystem({ size = "base", className = "" }: SkillIconPara
 
 export function SkillIconDatabase({ size = "base", className = "" }: SkillIconParams) {
     const sizes = {
-        sm: {
-            outer: "mb-4 p-0 min-w-[64px] w-[64px] min-h-[64px] h-[64px]",
-            icon: "left-[12px] top-[10px] w-[42px]",
-            platform: "absolute top-[30px] w-[64px] drop-shadow-sm",
-        },
         base: {
             outer: "m-0 p-0 min-w-[128px] w-[128px] min-h-[128px] h-[128px]",
-            icon: "left-[23px] w-[84px] top-[10px]",
-            platform: "absolute top-[45px] w-[128px] drop-shadow-md",
+            icon: "left-[23px] w-[84px] top-[10px] drop-shadow",
+            platform: "absolute top-[45px] w-[128px] drop-shadow",
         },
     };
 
@@ -193,15 +163,10 @@ export function SkillIconDatabase({ size = "base", className = "" }: SkillIconPa
 
 export function SkillIconCloud({ size = "base", className = "" }: SkillIconParams) {
     const sizes = {
-        sm: {
-            outer: "mb-4 p-0 min-w-[64px] w-[64px] min-h-[64px] h-[64px]",
-            icon: "left-[9px] top-[4px] w-[48px]",
-            platform: "absolute top-[30px] w-[64px] drop-shadow-sm",
-        },
         base: {
             outer: "m-0 p-0 min-w-[128px] w-[128px] min-h-[128px] h-[128px]",
-            icon: "left-[17px] top-[-5px] w-[96px]",
-            platform: "absolute top-[45px] w-[128px] drop-shadow-md",
+            icon: "left-[17px] top-[-5px] w-[96px] drop-shadow",
+            platform: "absolute top-[45px] w-[128px] drop-shadow",
         },
     };
 
@@ -217,15 +182,10 @@ export function SkillIconCloud({ size = "base", className = "" }: SkillIconParam
 
 export function SkillIconOS({ size = "base", className = "" }: SkillIconParams) {
     const sizes = {
-        sm: {
-            outer: "mb-4 p-0 min-w-[64px] w-[64px] min-h-[64px] h-[64px]",
-            icon: "left-[9px] top-[8px] w-[48px]",
-            platform: "absolute top-[30px] w-[64px] drop-shadow-sm",
-        },
         base: {
             outer: "m-0 p-0 min-w-[128px] w-[128px] min-h-[128px] h-[128px]",
-            icon: "left-[21px] w-[88px]",
-            platform: "absolute top-[45px] w-[128px] drop-shadow-md",
+            icon: "left-[21px] w-[88px] drop-shadow",
+            platform: "absolute top-[45px] w-[128px] drop-shadow",
         },
     };
 
@@ -241,14 +201,9 @@ export function SkillIconOS({ size = "base", className = "" }: SkillIconParams) 
 
 export function SkillIconGraphics({ size = "base", className = "" }: SkillIconParams) {
     const sizes = {
-        sm: {
-            outer: "mb-4 p-0 min-w-[64px] w-[64px] min-h-[64px] h-[64px]",
-            icon: "left-[12px] top-[10px] w-[42px]",
-            platform: "absolute top-[30px] w-[64px] drop-shadow-sm",
-        },
         base: {
             outer: "m-0 p-0 min-w-[128px] w-[128px] min-h-[128px] h-[128px]",
-            icon: "left-[22px] w-[84px]",
+            icon: "left-[22px] w-[84px] drop-shadow",
             platform: "absolute top-[45px] w-[128px] drop-shadow",
         },
     };

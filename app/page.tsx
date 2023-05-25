@@ -1,6 +1,5 @@
-"use client"; // TODO: optimize this into client/server
+"use client";
 
-import Image from "next/image";
 import { SectionBlock, SectionBlockTransition } from "@/components/SectionBlock";
 import { Section } from "@/components/Section";
 import {
@@ -60,11 +59,10 @@ function SkillBullet({ text }: SkillBulletParams) {
 type SkillDisplayParams = {
     align: "left" | "right";
     skillNames: string[];
-    smallImage: React.ReactNode;
     largeImage: React.ReactNode;
 };
 
-function SkillDisplay({ align, skillNames, smallImage, largeImage }: SkillDisplayParams) {
+function SkillDisplay({ align, skillNames, largeImage }: SkillDisplayParams) {
     return (
         <>
             {/* Small configuration */}
@@ -314,7 +312,7 @@ function InfoBlock({ onJumpTo, ...props }: InfoBlockParams) {
                             width={512}
                             height={512}
                             alt={"Icon"}
-                            className={"w-[64px] h-auto scale-x-[-1]"}
+                            className={"w-[64px] h-auto scale-x-[-1] drop-shadow"}
                         />
                         <span className={"mx-4"}>Jump to...</span>
                         <ImageWrap
@@ -322,7 +320,7 @@ function InfoBlock({ onJumpTo, ...props }: InfoBlockParams) {
                             width={512}
                             height={512}
                             alt={"Icon"}
-                            className={"w-[64px] h-auto"}
+                            className={"w-[64px] h-auto drop-shadow"}
                         />
                     </div>
                     <div className={"bg-opacity-50 bg-gray-200 p-1 rounded-lg"}>
@@ -383,7 +381,6 @@ function TechnicalSkillsBlock({ ...props }) {
                 <SkillDisplay
                     align={"left"}
                     skillNames={["JavaScript", "TypeScript", "NodeJS", "React", "HTML5", "CSS", "Tailwind", "Styled"]}
-                    smallImage={<SkillIconModernWeb size={"sm"} />}
                     largeImage={<SkillIconModernWeb size={"base"} />}
                 />
                 <div className={"text-right mt-20"}>
@@ -393,7 +390,6 @@ function TechnicalSkillsBlock({ ...props }) {
                 <SkillDisplay
                     align={"right"}
                     skillNames={["Nginx", "Apache", "PHP", "MySQL", "WordPress", "Drupal", "Joomla"]}
-                    smallImage={<SkillIconFullstack size={"sm"} />}
                     largeImage={<SkillIconFullstack size={"base"} />}
                 />
                 <div className={"text-left mt-20"}>
@@ -414,7 +410,6 @@ function TechnicalSkillsBlock({ ...props }) {
                         "QA",
                         "Scaling",
                     ]}
-                    smallImage={<SkillIconEnterprise size={"sm"} />}
                     largeImage={<SkillIconEnterprise size={"base"} />}
                 />
                 <div className={"text-right mt-20"}>
@@ -424,7 +419,6 @@ function TechnicalSkillsBlock({ ...props }) {
                 <SkillDisplay
                     align={"right"}
                     skillNames={["Auditing", "Solidity", "Hardhat", "EVM", "Alchemy", "Infura"]}
-                    smallImage={<SkillIconSmartContracts size={"sm"} />}
                     largeImage={<SkillIconSmartContracts size={"base"} />}
                 />
                 <div className={"text-left mt-20"}>
@@ -434,7 +428,6 @@ function TechnicalSkillsBlock({ ...props }) {
                 <SkillDisplay
                     align={"left"}
                     skillNames={["C/C++", "C#", "Java", "Python", "Shell", "Unity"]}
-                    smallImage={<SkillIconSystem size={"sm"} />}
                     largeImage={<SkillIconSystem size={"base"} />}
                 />
                 <div className={"text-right mt-20"}>
@@ -444,7 +437,6 @@ function TechnicalSkillsBlock({ ...props }) {
                 <SkillDisplay
                     align={"right"}
                     skillNames={["MongoDB", "MySQL", "PostgreSQL", "Redis", "SQLite"]}
-                    smallImage={<SkillIconDatabase size={"sm"} />}
                     largeImage={<SkillIconDatabase size={"base"} />}
                 />
                 <div className={"text-left mt-20"}>
@@ -454,7 +446,6 @@ function TechnicalSkillsBlock({ ...props }) {
                 <SkillDisplay
                     align={"left"}
                     skillNames={["AWS", "Azure", "CloudFlare", "Digital Ocean", "Vercel", "Vultr"]}
-                    smallImage={<SkillIconCloud size={"sm"} />}
                     largeImage={<SkillIconCloud size={"base"} />}
                 />
                 <div className={"text-right mt-20"}>
@@ -475,7 +466,6 @@ function TechnicalSkillsBlock({ ...props }) {
                         "Windows",
                         "Windows Server",
                     ]}
-                    smallImage={<SkillIconOS size={"sm"} />}
                     largeImage={<SkillIconOS size={"base"} />}
                 />
                 <div className={"text-left mt-20"}>
@@ -485,7 +475,6 @@ function TechnicalSkillsBlock({ ...props }) {
                 <SkillDisplay
                     align={"left"}
                     skillNames={["After Effects", "Cinema4D", "Figma", "Illustrator", "Inkscape", "Photoshop"]}
-                    smallImage={<SkillIconGraphics size={"sm"} />}
                     largeImage={<SkillIconGraphics size={"base"} />}
                 />
             </div>
