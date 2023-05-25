@@ -3,7 +3,7 @@
 import { SectionBlock, SectionBlockTransition } from "@/components/SectionBlock";
 import { Section } from "@/components/Section";
 import {
-    ANDREW_EMAIL_URL,
+    ANDREW_EMAIL,
     ANDREW_GITHUB_URL,
     ANDREW_LINKEDIN_URL,
     ANDREW_TWITTER_URL,
@@ -34,6 +34,8 @@ import { Gallery } from "@/components/Gallery";
 import { GalleryThumbnail } from "@/components/GalleryThumbnail";
 import { useCounter } from "@/lib/hooks/useCounter";
 import { ImageWrap } from "@/components/ImageWrap";
+import { useRouter } from "next/navigation";
+import { primitiveDecode } from "@/lib/Utils";
 
 //
 // Components
@@ -223,23 +225,48 @@ type ContactLinkParams = {
     text: string;
     href: string;
     svgIcon: string;
+    onClick?: () => void;
 };
 
-function ContactLink({ text, href, svgIcon }: ContactLinkParams) {
+function ContactLink({ text, href, svgIcon, onClick = undefined }: ContactLinkParams) {
     return (
-        <div className={"m-2 sm:m-0"}>
-            <a href={href}>
-                <ImageWrap
-                    src={svgIcon}
-                    width={512}
-                    height={512}
-                    alt={"Icon"}
-                    className={"inline-block w-[90%] max-w-[72px] h-auto m-4 drop-shadow hover:opacity-50"}
-                />
-            </a>
-            <br />
-            <a href={href}>{text}</a>
-        </div>
+        <>
+            {href.length == 0 && (
+                <div className={"m-2 sm:m-0"}>
+                    <ImageWrap
+                        src={svgIcon}
+                        width={512}
+                        height={512}
+                        alt={"Icon"}
+                        className={
+                            "inline-block w-[90%] max-w-[72px] h-auto m-4 drop-shadow hover:opacity-50 cursor-pointer"
+                        }
+                        onClick={onClick}
+                    />
+                    <br />
+                    <span onClick={onClick} className={"underline font-bold hover:no-underline cursor-pointer"}>
+                        {text}
+                    </span>
+                </div>
+            )}
+            {href.length > 0 && (
+                <div className={"m-2 sm:m-0"}>
+                    <a href={href}>
+                        <ImageWrap
+                            src={svgIcon}
+                            width={512}
+                            height={512}
+                            alt={"Icon"}
+                            className={
+                                "inline-block w-[90%] max-w-[72px] h-auto m-4 drop-shadow hover:opacity-50 cursor-pointer"
+                            }
+                        />
+                    </a>
+                    <br />
+                    <a href={href}>{text}</a>
+                </div>
+            )}
+        </>
     );
 }
 
@@ -668,10 +695,21 @@ function RecommendationsBlock({ ...props }) {
 }
 
 function ContactBlock({ ...props }) {
+    const router = useRouter();
+
     return (
         <SectionBlock section={Section.Four} title={"Contact"} {...props}>
             <div className="sm:grid sm:grid-cols-4 text-center max-w-[640px] mx-auto">
-                <ContactLink text={"Email"} href={ANDREW_EMAIL_URL} svgIcon={"/images/contact/email.svg"} />
+                <ContactLink
+                    text={"Email"}
+                    href={""}
+                    svgIcon={"/images/contact/email.svg"}
+                    onClick={() => {
+                        // Hopefully this reduces spam...
+                        router.replace("mailto:" + primitiveDecode(ANDREW_EMAIL));
+                        return false;
+                    }}
+                />
                 <ContactLink text={"LinkedIn"} href={ANDREW_LINKEDIN_URL} svgIcon={"/images/contact/linkedin.svg"} />
                 <ContactLink text={"Twitter"} href={ANDREW_TWITTER_URL} svgIcon={"/images/contact/twitter.svg"} />
                 <ContactLink text={"GitHub"} href={ANDREW_GITHUB_URL} svgIcon={"/images/contact/github.svg"} />
