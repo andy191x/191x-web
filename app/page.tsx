@@ -270,7 +270,7 @@ function HeaderBlock() {
                     alt={""}
                     className={"absolute left-[0px] top-[0px] w-[100%] h-[100%] z-[0]"}
                     style={{ objectFit: "cover" }}
-                    quality={100}
+                    quality={50}
                 />
                 <div className={"max-w-[1000px] mx-auto relative z-[1]"}>
                     <ImageWrap
@@ -280,6 +280,7 @@ function HeaderBlock() {
                         className={
                             "absolute left-[12px] top-[64px] w-[180px] h-[180px] z-[1] rounded-full ring-[6px] ring-blue-100 ring-opacity-100"
                         }
+                        quality={50}
                     />
                     {/* image block content goes here! */}
                 </div>
@@ -523,7 +524,7 @@ function WorkHistoryBlock({ ...props }) {
             <TimelineCap direction={"top"} />
             <TimelineItem
                 align={"left"}
-                era={"2012 – Present"}
+                era={"2021 – Present"}
                 jobTitle={"Self Employed"}
                 jobDesc={"Modern web and EVM smart contracts"}
                 present={true}

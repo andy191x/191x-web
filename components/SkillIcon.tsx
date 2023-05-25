@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ImageWrap } from "@/components/ImageWrap";
 
 //
@@ -225,14 +224,14 @@ export function SkillIconOS({ size = "base", className = "" }: SkillIconParams) 
         },
         base: {
             outer: "m-0 p-0 min-w-[128px] w-[128px] min-h-[128px] h-[128px]",
-            icon: "left-[18px] w-[96px]",
+            icon: "left-[21px] w-[88px]",
             platform: "absolute top-[45px] w-[128px] drop-shadow-md",
         },
     };
 
     return (
         <SkillIcon
-            svgIcon={"/images/skills/operating-systems.svg"}
+            svgIcon={"/images/skills/operating-systems-v2.svg"}
             svgPlatform={"/images/skills/platform-grey.svg"}
             size={sizes[size]}
             className={className}
