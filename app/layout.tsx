@@ -1,7 +1,9 @@
 import "./globals.css";
-import localFont from "next/font/local";
+//import localFont from "next/font/local";
+import { Nunito } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 
+/**
 const nunito = localFont({
     src: [
         { path: "/fonts/Nunito-VariableFont_wght.ttf", style: "normal" },
@@ -9,6 +11,9 @@ const nunito = localFont({
     ],
     variable: "--font-nunito",
 });
+ */
+
+const nunito = Nunito({ subsets: ["latin"] });
 
 export const metadata = {
     title: "Andrew Davis",

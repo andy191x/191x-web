@@ -52,7 +52,11 @@ type SkillBulletParams = {
 function SkillBullet({ text }: SkillBulletParams) {
     return (
         <div className={"flex flex-row justify-left items-center"}>
-            <div className={"inline-block bg-blue-500 rounded-full mr-3 w-2 h-2 ring-blue-200 ring-4"} />
+            <div
+                className={
+                    "inline-block bg-blue-500 rounded-full mr-3 w-2 h-2 ring-blue-200 ring-4 min-w-[8px] min-h-[8px]"
+                }
+            />
             <span className={"font-semibold"}>{text}</span>
         </div>
     );
