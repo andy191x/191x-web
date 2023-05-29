@@ -6,6 +6,7 @@ import {
     ANDREW_EMAIL,
     ANDREW_GITHUB_URL,
     ANDREW_LINKEDIN_URL,
+    ANDREW_RESUME_URL,
     ANDREW_TWITTER_URL,
     SOURCE_GITHUB_URL,
 } from "@/lib/Constants";
@@ -591,6 +592,8 @@ function WorkHistoryBlock({ ...props }) {
 }
 
 function ResumeBlock({ ...props }) {
+    const router = useRouter();
+
     return (
         <SectionBlock
             section={Section.Three}
@@ -599,7 +602,16 @@ function ResumeBlock({ ...props }) {
             {...props}
         >
             <div className={"text-center"}>
-                <Button text={"Download Resume PDF"} className={"mt-5"} section={Section.Three} />
+                <Button
+                    text={"Download Resume PDF"}
+                    className={"mt-5"}
+                    section={Section.Three}
+                    onClick={() => {
+                        // Hopefully this reduces spam...
+                        router.replace(primitiveDecode(ANDREW_RESUME_URL));
+                        return false;
+                    }}
+                />
             </div>
         </SectionBlock>
     );
