@@ -544,11 +544,18 @@ function WorkHistoryBlock({ ...props }) {
         >
             <TimelineCap direction={"top"} />
             <TimelineItem
+                align={"right"}
+                era={"2023 – Present"}
+                jobTitle={"Vultr"}
+                jobDesc={"Staff Software Engineer"}
+                companyImage={IconVultr}
+                present={true}
+            />
+            <TimelineItem
                 align={"left"}
-                era={"2021 – Present"}
+                era={"2021 – 2023"}
                 jobTitle={"Self Employed"}
                 jobDesc={"Modern web and EVM smart contracts"}
-                present={true}
             />
             <TimelineItem
                 align={"right"}
